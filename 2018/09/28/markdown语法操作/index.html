@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Head tag -->
+  <head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title -->
+  
+  <title>markdown语法操作 - 一蓑烟雨</title>
+
+  <!--Favicon-->
+  <link rel="icon" href="/favicon/favicon.ico">
+
+  <!--Description-->
+  
+      <meta name="description" content="我们的小博客">
+  
+
+  <!--Author-->
+  
+      <meta name="author" content="Young&amp;Echo">
+  
+
+  <!-- Pure CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Open+Sans:300,800" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+   
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Analytics -->
+  
+
+  
+  <link rel="stylesheet" href="/js/google-code-prettify/github-v2.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+
+  <body>
+  	<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container-fluid navbar-container m-sm-5">
+      <!-- Header -->
+      <nav class="navbar navbar-toggleable-sm navbar-light px-1 py-3 my-3 mb-sm-5">
+  <a class="navbar-brand ml-2" href="/">一蓑烟雨</a>
+  <button class="navbar-toggler navbar-toggler-right py-2" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse text-center" id="navbarCollapse">
+    <ul class="navbar-nav ml-auto my-auto">
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/">首页</a>
+        </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/about">关于</a>
+        </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">联系</a>
+        </li>
+      
+    </ul>
+    <hr class="hidden-md-up" />
+  </div>
+</nav>
+
+
+  		<div class="row">
+  			<div class="col-12 mb-4">
+  <img class="img-fluid project-img" src="/images/unsplash1.jpg" alt="markdown语法操作">
+</div>
+<div class="col-lg-3 col-12 pt-3 px-4 pr-lg-5">
+  <h1>markdown语法操作</h1>
+  
+	<p class="fixed" id="show-toc-btn" onclick="showToc();" style="display:none">
+        <strong class="toc-title-close">显示目录</strong>
+    </p>
+	
+	
+    <div id="toc-article" class="fixed">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+            <strong class="toc-title-open">目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#标题"><span class="toc-text">标题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#粗斜体"><span class="toc-text">粗斜体</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#链接"><span class="toc-text">链接</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#列表"><span class="toc-text">列表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#引用"><span class="toc-text">引用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#图片"><span class="toc-text">图片</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#空格"><span class="toc-text">空格</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#换行"><span class="toc-text">换行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分隔符"><span class="toc-text">分隔符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#高级技巧"><span class="toc-text">高级技巧</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#符号转义"><span class="toc-text">符号转义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#扩展"><span class="toc-text">扩展</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#公式"><span class="toc-text">公式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+	
+    <script type="text/javascript">
+        function showToc(){
+            var toc_article = document.getElementById("toc-article");
+            var show_toc_btn = document.getElementById("show-toc-btn");
+            toc_article.setAttribute("style","display:block");
+            show_toc_btn.setAttribute("style","display:none");
+            };
+        function showBtn(){
+            var toc_article = document.getElementById("toc-article");
+            var show_toc_btn = document.getElementById("show-toc-btn");
+            toc_article.setAttribute("style","display:none");
+            show_toc_btn.setAttribute("style","display:block");
+            };
+    </script>
+
+ 
+</div>
+<div class="col-lg-9 col-12 pt-lg-3 mb-4 pl-lg-5 px-lg-0 px-4 portfolio-content">
+  <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>如果你只想高亮语句中的某个函数名或关键字，可以使用 <code>function_name()</code> 实现</p>
+<p>通常编辑器根据代码片段适配合适的高亮方法，但你也可以用 ``` 包裹一段代码，并指定一种语言</p>
+<p>```javascript<br>$(document).ready(function () {<br>    alert(‘hello world’);<br>});<br>```</p>
+<pre><code class="lang-javascript">$(document).ready(function () {
+    alert(&#39;hello world&#39;);
+});
+</code></pre>
+<p>也可以使用 4 空格缩进，再贴上代码，实现相同的的效果</p>
+<pre><code>def g(x):
+    yield from range(x, 0, -1)
+yield from range(x)
+</code></pre><h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>文章内容较多时，可以用标题分段：<br><strong>方法一：</strong><br>标题1<br>\======<br>标题2<br> -----<br><strong>方法二：</strong><br># 主标题 #<br>## 大标题 ##<br>### 小标题 ###  </p>
+<h1 id="粗斜体"><a href="#粗斜体" class="headerlink" title="粗斜体"></a>粗斜体</h1><p>*斜体文本*  &nbsp;&nbsp;&nbsp;&nbsp;和 &nbsp;&nbsp;&nbsp; _斜体文本_<br>**粗体文本**  &nbsp;&nbsp;&nbsp;和&nbsp;&nbsp;&nbsp;  __粗体文本__<br>***粗斜体文本***  &nbsp;&nbsp;&nbsp;和 &nbsp;&nbsp;&nbsp; ___粗斜体文本___ </p>
+<h1 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h1><p>常用链接方法</p>
+<p>文字链接 [链接名称](<a href="http://链接网址" target="_blank" rel="noopener">http://链接网址</a>)<br>网址链接 &lt; <a href="http://链接网址&gt;" target="_blank" rel="noopener">http://链接网址&gt;</a></p>
+<p>高级链接技巧</p>
+<p>这个链接用 1 作为网址变量 <a href="http://www.google.com/" target="_blank" rel="noopener">Google</a>.<br>这个链接用 yahoo 作为网址变量 <a href="http://www.yahoo.com/" target="_blank" rel="noopener">Yahoo!</a>.<br>然后在文档的结尾为变量赋值（网址）</p>
+<p>  [1]: <a href="http://www.google.com/" target="_blank" rel="noopener">http://www.google.com/</a><br>  [yahoo]: <a href="http://www.yahoo.com/" target="_blank" rel="noopener">http://www.yahoo.com/</a>  </p>
+<h1 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h1><p>普通无序列表</p>
+<ul>
+<li>列表文本前使用 [减号+空格]</li>
+</ul>
+<ul>
+<li>列表文本前使用 [加号+空格]</li>
+</ul>
+<ul>
+<li>列表文本前使用 [星号+空格]</li>
+</ul>
+<p>普通有序列表</p>
+<ol>
+<li>列表前使用 [数字+空格]</li>
+<li>我们会自动帮你添加数字</li>
+<li>不用担心数字不对，显示的时候我们会自动把这行的 7 纠正为 3</li>
+</ol>
+<p>列表嵌套</p>
+<ol>
+<li>列出所有元素：<ul>
+<li>无序列表元素 A<ol>
+<li>元素 A 的有序子列表</li>
+</ol>
+</li>
+<li>前面加四个空格</li>
+</ul>
+</li>
+<li>列表里的多段换行：<br> 前面必须加四个空格，<br> 这样换行，整体的格式不会乱</li>
+<li><p>列表里引用：</p>
+<blockquote>
+<p>前面空一行<br>仍然需要在<br>前面加四个空格</p>
+</blockquote>
+</li>
+<li><p>列表里代码段：</p>
+<pre><code> 前面四个空格，之后按代码语法书` ` `写
+</code></pre><pre><code> 或者直接空八个，引入代码块  
+</code></pre></li>
+</ol>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>普通引用</p>
+<blockquote>
+<p>引用文本前使用 [大于号+空格]<br>折行可以不加，新起一行都要加上  </p>
+</blockquote>
+<p>带作者和来源的引用<br>{\% blockquote 作者, 来源 %}引用内容{\% endblockquote %}<br><blockquote><p>Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy. </p>
+<footer><strong>David Levithan</strong><cite>Wide Awake</cite></footer></blockquote></p>
+<p>引用里嵌套引用</p>
+<blockquote>
+<p>最外层引用</p>
+<blockquote>
+<p>多一个 &gt; 嵌套一层引用</p>
+<blockquote>
+<p>可以嵌套很多层</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>引用里嵌套列表</p>
+<blockquote>
+<ul>
+<li>这是引用里嵌套的一个列表</li>
+<li>还可以有子列表<ul>
+<li>子列表需要从 - 之后延后四个空格开始</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h1 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h1><p>跟链接的方法区别在于前面加了个感叹号 !，这样是不是觉得好记多了呢？</p>
+<p>![图片名称](<a href="http://图片网址" target="_blank" rel="noopener">http://图片网址</a>)<br>当然，你也可以像网址那样对图片网址使用变量</p>
+<p>这个链接用 2 作为网址变量 ![apple][2]<br><img src="http://pic38.photophoto.cn/20160321/0007019903560303_b.jpg" alt="alpple">.<br>然后在文档的结尾位变量赋值（网址）<br>[2]: <a href="http://pic38.photophoto.cn/20160321/0007019903560303_b.jpg" target="_blank" rel="noopener">http://pic38.photophoto.cn/20160321/0007019903560303_b.jpg</a>  </p>
+<h1 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h1><p>如果需要多个空格，输入&amp; nbsp;<br>注意是英文输入法的;，&amp;与nbsp;之间没有空格  </p>
+<h1 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h1><p>如果另起一行，只需在当前行结尾加 2 个空格<br>在当前行的结尾加 2 个空格<br>这行就会新起一行</p>
+<p>如果是要起一个新段落，只需要空出一行即可。</p>
+<h1 id="分隔符"><a href="#分隔符" class="headerlink" title="分隔符"></a>分隔符</h1><p>如果你有写分割线的习惯，可以新起一行输入三个减号-。当前后都有段落时，请空出一行：</p>
+<p>前面的段落</p>
+<hr>
+<p>后面的段落</p>
+<h1 id="高级技巧"><a href="#高级技巧" class="headerlink" title="高级技巧"></a>高级技巧</h1><p>行内 HTML 元素<br>目前只支持部分段内 HTML 元素效果，包括 &lt;\kdb&gt; &lt;\b&gt; &lt;\i&gt; &lt;\em&gt; &lt;\sup&gt; &lt;\sub&gt; &lt;\br&gt; （没有\符号），如</p>
+<p>键位显示<br>使用 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd> 重启电脑</p>
+<p>代码块<br>使用 &lt;\pre&gt;&lt;\/pre&gt; 元素同样可以形成代码块</p>
+<p>粗斜体<br>&lt;\b&gt; Markdown 在此处同样适用，如 加粗 &lt;\/b&gt;<br><b> Markdown 在此处同样适用，如 加粗 </b></p>
+<h1 id="符号转义"><a href="#符号转义" class="headerlink" title="符号转义"></a>符号转义</h1><p>如果你的描述中需要用到 markdown 的符号，比如 _ # <em> 等，但又不想它被转义，这时候可以在这些符号前加反斜杠，如 _ # \</em> 进行避免。<br>_不想这里的文本变斜体_<br>**不想这里的文本被加粗**</p>
+<h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><p>支持 jsfiddle、gist、runjs、优酷视频，直接填写 url，在其之后会自动添加预览点击会展开相关内容。<br><a href="http://{url_of_the_fiddle}/embedded/[{tabs}/[{style}]]/" target="_blank" rel="noopener">http://{url_of_the_fiddle}/embedded/[{tabs}/[{style}]]/</a><br><a href="https://gist.github.com/{gist_id}" target="_blank" rel="noopener">https://gist.github.com/{gist_id}</a>  </p>
+<h1 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h1><p>当你需要在编辑器中插入数学公式时，可以使用两个美元符 $$ 包裹 TeX 或 LaTeX 格式的数学公式来实现。提交后，问答和文章页会根据需要加载 Mathjax 对数学公式进行渲染。如：<br>x = {-b \pm \sqrt{b^2-4ac} \over 2a}  </p>
+<script type="math/tex; mode=display">x = {-b \pm \sqrt{b^2-4ac} \over 2a}</script><p>x \href{why-equal.html}{=} y^2 + 1  </p>
+<script type="math/tex; mode=display">
+x \href{why-equal.html}{=} y^2 + 1</script><p>同时也支持 HTML 属性，如：<br>(x+1)^2 = \class{hidden}{(x+1)(x+1)}  </p>
+<script type="math/tex; mode=display">(x+1)^2 = \class{hidden}{(x+1)(x+1)}</script><hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://segmentfault.com/markdown/" target="_blank" rel="noopener">Markdown 编辑器语法指南</a></p>
+
+</div>
+
+
+      </div>
+      
+  	</div>
+
+    <!-- After footer scripts -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
+<footer id="footer" class="footer">
+  <div class="footer-inner"> 
+
+  <div class="copyright">
+    ©  2018 -- 2023    Young&Echo
+  </div>
+
+  <div class="powered-by">
+    Hosted by <a href="https://pages.coding.me">Coding Pages</a>
+  </div>
+
+  <div class="powered-by">
+    Powered By <a class="theme-link" href="http://hexo.io">Hexo</a>
+  </div>
+
+  <div class="powered-by">
+    主题 - <a class="theme-link" href="https://github.com/sharvaridesai/hexo-theme-edinburgh">Edinburgh</a>  
+  </div>
+
+  <div class="reviewer">
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    您是本站第<span id="busuanzi_value_site_pv" class="counter"><i class="fa fa-spinner fa-spin"></i></span>位访问者
+  </div>
+
+  <!-- 不蒜子 -->
+  <script async="" src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <!-- 不蒜子计数初始值纠正 -->
+  <script>
+      $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(100000);
+       function fixCount() {
+         if ($("#busuanzi_container_site_pv").css("display") != "none") {
+              clearInterval(int);
+              $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+         }
+     }
+    });
+  </script>
+
+  <script src="/js/google-code-prettify/prettify.js"></script>
+  <script type='text/javascript'>
+		//代码高亮
+		$(document).ready(function(){
+	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+   			prettyPrint();
+		});
+  </script>
+
+
+ </div>
+    </footer><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  </body>
+</html>

@@ -283,7 +283,7 @@ footer {
 
 .reviewer {
   display: inline-block;
-  color:rgba(0,0,0,.5);
+  color: rgba(0,0,0,.5);
   font-family: Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "SimHei", "Microsoft YaHei", "WenQuanYi Micro Hei";
   margin-right: 10px;
 }
@@ -304,6 +304,7 @@ footer {
 
 strong {
 	font-family: Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "SimHei", "Microsoft YaHei", "WenQuanYi Micro Hei";
+	color: #000000
 }
 
 .toc-text {

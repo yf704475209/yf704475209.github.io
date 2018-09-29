@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Head tag -->
+  <head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title -->
+  
+  <title>机器学习算法总结 - 一蓑烟雨</title>
+
+  <!--Favicon-->
+  <link rel="icon" href="/favicon/favicon.ico">
+
+  <!--Description-->
+  
+      <meta name="description" content="我们的小博客">
+  
+
+  <!--Author-->
+  
+      <meta name="author" content="Young&amp;Echo">
+  
+
+  <!-- Pure CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Open+Sans:300,800" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+   
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Analytics -->
+  
+
+  
+  <link rel="stylesheet" href="/js/google-code-prettify/github-v2.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+
+  <body>
+  	<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container-fluid navbar-container m-sm-5">
+      <!-- Header -->
+      <nav class="navbar navbar-toggleable-sm navbar-light px-1 py-3 my-3 mb-sm-5">
+  <a class="navbar-brand ml-2" href="/">一蓑烟雨</a>
+  <button class="navbar-toggler navbar-toggler-right py-2" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse text-center" id="navbarCollapse">
+    <ul class="navbar-nav ml-auto my-auto">
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/">首页</a>
+        </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/about">关于</a>
+        </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">联系</a>
+        </li>
+      
+    </ul>
+    <hr class="hidden-md-up" />
+  </div>
+</nav>
+
+
+  		<div class="row">
+  			<div class="col-12 mb-4">
+  <img class="img-fluid project-img" src="/images/unsplash4.jpg" alt="机器学习算法总结">
+</div>
+<div class="col-lg-3 col-12 pt-3 px-4 pr-lg-5">
+  <h1>机器学习算法总结</h1>
+  
+	<p class="fixed" id="show-toc-btn" onclick="showToc();" style="display:none">
+        <strong class="toc-title-close">显示目录</strong>
+    </p>
+	
+	
+    <div id="toc-article" class="fixed">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+            <strong class="toc-title-open">目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#信息论"><span class="toc-text">信息论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#信息熵-与-自信息"><span class="toc-text">信息熵 与 自信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#交叉熵-与-相对熵-KL散度"><span class="toc-text">交叉熵 与 相对熵/KL散度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#联合信息熵和条件信息熵"><span class="toc-text">联合信息熵和条件信息熵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#互信息（信息增益）"><span class="toc-text">互信息（信息增益）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逻辑斯蒂回归"><span class="toc-text">逻辑斯蒂回归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型定义"><span class="toc-text">模型定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推导"><span class="toc-text">推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多分类逻辑斯蒂回归模型"><span class="toc-text">多分类逻辑斯蒂回归模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#逻辑回归并行化"><span class="toc-text">逻辑回归并行化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最大熵模型"><span class="toc-text">最大熵模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#最大熵原理"><span class="toc-text">最大熵原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最大熵模型-1"><span class="toc-text">最大熵模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最大熵模型的学习"><span class="toc-text">最大熵模型的学习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#支持向量机"><span class="toc-text">支持向量机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简述"><span class="toc-text">简述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持向量"><span class="toc-text">支持向量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持向量机的分类"><span class="toc-text">支持向量机的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核函数与核技巧"><span class="toc-text">核函数与核技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用核函数"><span class="toc-text">常用核函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核函数的本质"><span class="toc-text">核函数的本质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最大间隔超平面背后的原理"><span class="toc-text">最大间隔超平面背后的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持向量机推导"><span class="toc-text">支持向量机推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线性可分支持向量机推导"><span class="toc-text">线性可分支持向量机推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#符号定义"><span class="toc-text">符号定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SVM标准问题的推导"><span class="toc-text">SVM标准问题的推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SVM对偶算法的推导"><span class="toc-text">SVM对偶算法的推导</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#决策树"><span class="toc-text">决策树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#信息增益、Gini系数、信息增益率"><span class="toc-text">信息增益、Gini系数、信息增益率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ID3决策树"><span class="toc-text">ID3决策树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C4-5算法"><span class="toc-text">C4.5算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#树的剪枝"><span class="toc-text">树的剪枝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CART算法"><span class="toc-text">CART算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CART回归树算法推导"><span class="toc-text">CART回归树算法推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何划分输入空间"><span class="toc-text">如何划分输入空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：选择切分变量与切分点"><span class="toc-text">示例：选择切分变量与切分点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CART分类树算法"><span class="toc-text">CART分类树算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集成学习"><span class="toc-text">集成学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#集成学习的基本策略"><span class="toc-text">集成学习的基本策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AdaBoost算法"><span class="toc-text">AdaBoost算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AdaBoost算法解决Boosting两个基本问题的方法："><span class="toc-text">AdaBoost算法解决Boosting两个基本问题的方法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AdaBoost算法描述"><span class="toc-text">AdaBoost算法描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AdaBoost算法要点说明"><span class="toc-text">AdaBoost算法要点说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前向分布算法"><span class="toc-text">前向分布算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#加法模型"><span class="toc-text">加法模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前向分布算法描述"><span class="toc-text">前向分布算法描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前向分布算法与AdaBoost"><span class="toc-text">前向分布算法与AdaBoost</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#梯度提升决策树GBDT"><span class="toc-text">梯度提升决策树GBDT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#提升树Boosting-Tree"><span class="toc-text">提升树Boosting Tree</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提升树算法描述"><span class="toc-text">提升树算法描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度提升（GB）算法"><span class="toc-text">梯度提升（GB）算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度提升决策树（GBDT）算法描述"><span class="toc-text">梯度提升决策树（GBDT）算法描述</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XGBoost算法"><span class="toc-text">XGBoost算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#XGBoost与GBDT的主要区别"><span class="toc-text">XGBoost与GBDT的主要区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XGBoost的一些内部优化"><span class="toc-text">XGBoost的一些内部优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#随机森林"><span class="toc-text">随机森林</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#隐马尔科夫模型"><span class="toc-text">隐马尔科夫模型</span></a></li></ol>
+    </div>
+	
+    <script type="text/javascript">
+        function showToc(){
+            var toc_article = document.getElementById("toc-article");
+            var show_toc_btn = document.getElementById("show-toc-btn");
+            toc_article.setAttribute("style","display:block");
+            show_toc_btn.setAttribute("style","display:none");
+            };
+        function showBtn(){
+            var toc_article = document.getElementById("toc-article");
+            var show_toc_btn = document.getElementById("show-toc-btn");
+            toc_article.setAttribute("style","display:none");
+            show_toc_btn.setAttribute("style","display:block");
+            };
+    </script>
+
+ 
+</div>
+<div class="col-lg-9 col-12 pt-lg-3 mb-4 pl-lg-5 px-lg-0 px-4 portfolio-content">
+  <h2 id="信息论"><a href="#信息论" class="headerlink" title="信息论"></a>信息论</h2><ul>
+<li>信息论的基本想法是：一件不太可能的事发生，要比一件非常可能的事发生，能提供更多的信息。</li>
+<li>该想法可描述为以下性质：</li>
+</ul>
+<ol>
+<li>非常可能发生的事件信息量比较少，并且在极端情况下，一定能够发生的事件没有信息量</li>
+<li>比较不可能发生的事件具有更大的信息量</li>
+<li>独立事件应具有增量的信息。例如：投掷的硬币两次正面朝上传递的信息量，应该是投掷一次硬币正面朝上的信息量的两倍。</li>
+</ol>
+<h3 id="信息熵-与-自信息"><a href="#信息熵-与-自信息" class="headerlink" title="信息熵 与 自信息"></a>信息熵 与 自信息</h3><p>自信息是一种量化以上性质的函数，定义一个事件x的自信息为：$I(x) = -logP(x)$  </p>
+<blockquote>
+<p>当该对数的底数为自然对数e时，单位为奈特（nats）；当以2为底数时，单位为比特（bit)</p>
+</blockquote>
+<ul>
+<li>自信息只处理单个的输出</li>
+<li>信息熵用于对整个概率分布中的<strong>不确定性总量</strong>进行量化：<script type="math/tex; mode=display">H(\mathrm{X})=\mathbb{E}_{\mathrm{X} \sim P}[I(x)]=-\sum_{x \in \mathrm{X}}P(x)\log P(x)</script></li>
+</ul>
+<h3 id="交叉熵-与-相对熵-KL散度"><a href="#交叉熵-与-相对熵-KL散度" class="headerlink" title="交叉熵 与 相对熵/KL散度"></a>交叉熵 与 相对熵/KL散度</h3><ul>
+<li><p>交叉熵本质上可以看成,用一个猜测的分布Q的编码方式去编码其真实的分布P,得到的平均编码长度或者信息量</p>
+<script type="math/tex; mode=display">H_P(Q)=-\mathbb{E}_{\mathrm{X}\sim P}\log Q(x)=-\sum_{x \in \mathrm{X}}P(x)\log Q(x)</script></li>
+<li><p><strong>交叉熵在机器学习领域的作用：</strong></p>
+<ul>
+<li>交叉熵在机器学习领域中经常作为损失函数</li>
+<li>本质上相当于衡量两个编码方式之间的差值，因为只有当猜测的分布约接近于真实分布，则其值越小</li>
+<li>在LR中用交叉熵比平方误差方法好在：<ol>
+<li>在LR中，如果用平方损失函数，则损失函数是一个非凸的，而用交叉熵的话就是一个凸函数</li>
+<li>用交叉熵做LR求导的话，得到的导数公式如下 <script type="math/tex; mode=display">\frac{\partial L}{\partial \theta_j} = - \sum_i(y_i - p(x_i))x_{ij}</script> 而用平方损失函数的话，其求导结果为<script type="math/tex; mode=display">\frac{\partial L}{\partial \theta_j} = - \sum_i(y_i - p(x_i))p'(x_i)</script> 平方损失函数中会出现<script type="math/tex; mode=display">p'(x_i)</script> 而sigmoid函数的导数会出现梯度消失的问题（饱和现象）</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>定义P对Q的KL散度：</p>
+<script type="math/tex; mode=display">D_P(Q)=\mathbb{E}_{\mathrm{X}\sim P}\left [ \log \frac{P(x)}{Q(x)} \right ]=\sum_{x \in \mathrm{X}}P(x)\left [ \log P(x)-\log Q(x) \right ]</script></li>
+</ul>
+<ul>
+<li><strong>KL散度在信息论中度量的是哪个直观量？</strong><ul>
+<li>在离散型变量的情况下，KL散度衡量的是：当我们使用一种能够使得概率分布Q（估计分布）产生的消息的长度最小的编码，发送包含由概率分布P（真实分布）产生的符号消息时，所需要的额外信息量，或者说由Q得到的平均编码长度与由P得到的平均编码长度多出的bit数</li>
+<li>KL散度<strong>表示2个函数或者概率分布的差异性</strong>：差异性越大则KL散度越大</li>
+</ul>
+</li>
+<li><strong>KL散度的性质：</strong><ul>
+<li>非负：KL散度为0当且仅当P和Q在离散型变量的情况下是相同的分布，或者在连续型变量的情况下是“几乎处处”相同的</li>
+<li>不对称：$D_p(q) \ne D_q(p)$</li>
+</ul>
+</li>
+<li><p><strong>交叉熵与KL散度的关系</strong>：</p>
+<ul>
+<li><p>P对Q的交叉熵等于P的熵加上P对Q的KL散度</p>
+<script type="math/tex; mode=display">H_P(Q)=H(P) + D_P(Q)</script></li>
+<li><p><strong>针对 Q 最小化交叉熵等价于最小化 P 对 Q 的 KL 散度</strong>，因为 Q 并不参与被省略的那一项。</p>
+</li>
+<li>最大似然估计中，最小化 KL 散度其实就是在最小化分布之间的交叉熵。</li>
+</ul>
+</li>
+</ul>
+<h3 id="联合信息熵和条件信息熵"><a href="#联合信息熵和条件信息熵" class="headerlink" title="联合信息熵和条件信息熵"></a>联合信息熵和条件信息熵</h3><ul>
+<li><p>联合信息熵：</p>
+<script type="math/tex; mode=display">H(X,Y) = \sum_{x,y}p(x,y)\log_2(\frac{1}{p(x,y)})</script></li>
+<li><p>条件信息熵：</p>
+<script type="math/tex; mode=display">H(X|Y) = \sum_{y}p(y)\sum_xp(x|y)\log_2(\frac{1}{p(x|y)})</script></li>
+<li><p>当已知$H(x)$这个信息量的时候，联合分布$H(X,Y)$剩余的信息量就是条件熵：</p>
+<script type="math/tex; mode=display">H(X|Y) = H(X,Y) - H(X)</script></li>
+</ul>
+<h3 id="互信息（信息增益）"><a href="#互信息（信息增益）" class="headerlink" title="互信息（信息增益）"></a>互信息（信息增益）</h3><ul>
+<li><p>互信息就是一个联合分布中的两个信息的纠缠程度（相互影响那部分的信息量）：</p>
+<script type="math/tex; mode=display">I(X|Y) = H(X) + H(Y)- H(X,Y)</script></li>
+<li><p><strong>决策树中的信息增益就是互信息</strong>，决策树是采用的上面第二种计算方法，即把分类的不同结果看成不同随机事件Y，然后把当前选择的特征看成X，则信息增益就是当前Y的信息熵减去已知X情况下的信息熵</p>
+</li>
+<li><p>互信息可以转化成两个分布$P(X, Y)$和$P(X)P(Y)$之间的KL散度：</p>
+<script type="math/tex; mode=display">\begin{aligned}I(X|Y) &= H(X) + H(Y)- H(X,Y) \\
+  &=-\sum_{x,y}p(x,y)\left [\log(p(x)) + \log(p(x)) - \log(p(x,y)) \right ] \\
+  & = -\sum_{x,y}p(x,y)\log(\frac{p(x)p(y)}{p(x,y)}) \\
+  & = D(P(X,Y)||P(X)P(Y))
+  \end{aligned}</script></li>
+<li><p>互信息非负：KL散度非负，所以互信息非负</p>
+</li>
+</ul>
+<h2 id="逻辑斯蒂回归"><a href="#逻辑斯蒂回归" class="headerlink" title="逻辑斯蒂回归"></a>逻辑斯蒂回归</h2><ul>
+<li>应用在广告系统中进行CTR预估，推荐系统中的转换率预估，反垃圾系统中的识别垃圾内容</li>
+</ul>
+<h3 id="模型定义"><a href="#模型定义" class="headerlink" title="模型定义"></a>模型定义</h3><ul>
+<li><p>二项逻辑斯蒂回归模型即如下的条件概率分布：（简洁起见，省略了偏置 b；也可以看做将偏置扩充到了权重中）</p>
+<script type="math/tex; mode=display">P(Y=1|x)=\frac{1}{1+\exp(-wx)}=\sigma(x)</script><script type="math/tex; mode=display">P(Y=0|x)=1-\sigma(x)</script><p>  其中</p>
+<script type="math/tex; mode=display">x\in \mathrm{R}^n, Y \in \{0, 1\}</script></li>
+</ul>
+<h3 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h3><ul>
+<li>推导的关键点（3）<ol>
+<li>定义</li>
+<li>损失函数（极大似然）</li>
+<li>参数优化（梯度下降）</li>
+</ol>
+</li>
+<li>给定训练集$T=\{(x_1,y_1),..,(x_N,y_N)\}$， 其中$x\in \mathrm{R}^n, Y \in \{0, 1\}$</li>
+</ul>
+<ol>
+<li><p>定义：</p>
+<script type="math/tex; mode=display">P(Y=1|x)=\frac{1}{1+\exp(-wx)}=\sigma(x)</script><script type="math/tex; mode=display">P(Y=0|x)=1-\sigma(x)</script></li>
+<li><p><strong>交叉熵</strong>作为损失函数：</p>
+<script type="math/tex; mode=display">\begin{aligned} L(w) &= -\log \left( \prod_{i=1}^N [\sigma(x_i)]^{y_i} [1-\sigma(x_i)]^{1-y_i} \right ) \\
+ &= -\sum_{i=1}^N [y_i\log\sigma(x_i) + (1-y_i)\log(1-\sigma(x_i))] \\
+ &= -\sum_{i=1}^N [y_i\log\frac{\sigma(x_i)}{1-\sigma(x_i)} + \log(1-\sigma(x_i))]
+ \end{aligned}</script><p> 进一步带入$\sigma(x)$有：</p>
+<script type="math/tex; mode=display">L(w)=-\sum_{i=1}^N \left [ y_i(wx_i)-\log(1+\exp(wx_i)) \right ]</script></li>
+<li><p>问题就变成了以对数似然函数为目标的最优化问题，可以采用梯度下降法或拟牛顿法求解，其中求<strong>梯度为</strong></p>
+<script type="math/tex; mode=display">\begin{aligned} \frac{\partial L(w)}{\partial w} & = -\sum_{i=1}^N \left [ y_ix_i - \frac{exp(wx_i)}{1+exp(wx_i)}x_i \right ] \\
+ &= \sum_{i=1}^N[\sigma(x_i) -y_i]x_i \end{aligned}</script></li>
+<li><p>假设$w$的极大似然估计值是$\hat{w}$，那么</p>
+<script type="math/tex; mode=display">P(Y=1|x) = \frac{exp(\hat{w}\cdot x)}{1+exp(\hat{w}\cdot x)}</script><script type="math/tex; mode=display">P(Y=0|x) = \frac{1}{1+exp(\hat{w}\cdot x)}</script></li>
+</ol>
+<h3 id="多分类逻辑斯蒂回归模型"><a href="#多分类逻辑斯蒂回归模型" class="headerlink" title="多分类逻辑斯蒂回归模型"></a>多分类逻辑斯蒂回归模型</h3><ul>
+<li><p>设$Y \in \{1,2,..K\}$， 则多项逻辑斯蒂回归模型为：</p>
+<script type="math/tex; mode=display">\begin{aligned} P(Y=k|x)&=\frac{\exp(w_kx)}{1+\sum_{k=1}^{K-1} \exp(w_kx)} \quad k=1,2,..,K-1 \\ P(Y=K|x)&=\frac{1}{1+\sum_{k=1}^{K-1}\exp(w_kx)} \end{aligned}</script></li>
+<li><p>与Softmax类似</p>
+</li>
+</ul>
+<h3 id="逻辑回归并行化"><a href="#逻辑回归并行化" class="headerlink" title="逻辑回归并行化"></a>逻辑回归并行化</h3><ul>
+<li><p>逻辑回归的并行化最主要的就是对目标函数梯度计算的并行化</p>
+<ol>
+<li><p>数据分割</p>
+<p> <img src="/2018/09/29/机器学习算法总结/1.png" alt=""></p>
+</li>
+<li><p>并行计算</p>
+<ol>
+<li><p>各节点并行计算点乘</p>
+<script type="math/tex; mode=display">d_{(r,c),k,t}=W_c^TX_{(r,c),k}</script><p> 其中k=1,2,…,M/m</p>
+<script type="math/tex; mode=display">d_{(r,c),k,t}</script><p> 表示第t次迭代中节点(r,c)上的第k个特征向量与特征权重分量的点乘，$W_{c,t}$为第t次迭代中特征权重向量在第c列节点上的分量</p>
+</li>
+<li><p>对行号相同的节点归并点乘结果</p>
+<script type="math/tex; mode=display">d_{r,k,t}=W_t^TX_{r,k}=\sum_{c=1}^nd_{(r,c),k,t}=\sum_{c=1}^nW_{c,t}^TX_{(r,c),k} \in \mathrm{R}</script><p> 计算得到的点乘结果需要返回到该行所有计算节点中，如图所示<br> <img src="/2018/09/29/机器学习算法总结/2.png" alt=""></p>
+</li>
+<li><p>各节点独立算标量与特征向量相乘</p>
+<script type="math/tex; mode=display">G_{(r,c),t}=\sum_{k=1}^{M/m}[\sigma(y_{r,k}d_{r,k,t})-1]y_{r,k}X_{(r,c),k} \in \mathrm{R^{N/n}}</script><p> $G_{(r,c),t}$可以理解为由第r行节点上部分样本计算出的目标函数梯度向量在第c列节点上的分量</p>
+</li>
+<li><p>对列号相同的节点进行归并</p>
+<script type="math/tex; mode=display">G_{c,t}=\sum_{r=1}^mG_{(r,c),t} \in \mathrm{R^{N/n}}</script><p> $G_{c,t}$就是目标函数的梯度向量$G_t$在第c列节点上的分量，对其进行归并得到目标函数的梯度向量</p>
+<script type="math/tex; mode=display">G_t=<G_{1,t},...,G_{c,t},...,G_{n,t}> \in \mathrm{R^N}</script><p> 这个过程如图所示<br> <img src="/2018/09/29/机器学习算法总结/3.png" alt=""></p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="最大熵模型"><a href="#最大熵模型" class="headerlink" title="最大熵模型"></a>最大熵模型</h2><ul>
+<li>最大熵模型是由最大熵原理推导实现的</li>
+</ul>
+<h3 id="最大熵原理"><a href="#最大熵原理" class="headerlink" title="最大熵原理"></a>最大熵原理</h3><ul>
+<li>最大熵原理是概率模型学习的一个准则，最大熵原理认为，学习概率模型时，在所有可能的概率模型中，熵最大的模型是最好的模型</li>
+<li><p>假设离散随机变量X的概率分布是$P(X)$，其熵是</p>
+<script type="math/tex; mode=display">H(P) = -\sum_xP(x)\log P(x)</script><p>  熵满足$0\le H(P)\le \log |X|$，$|X|$是X的取值个数，当且仅当X的分布是均匀分布时，右边等号成立，即X分从均匀分布时，熵最大</p>
+</li>
+<li><p>也就是最大熵原理认为在没有更多信息的情况下，不确定部分都是“等可能的”。最大熵原理是通过熵的最大化来表示等可能性</p>
+</li>
+</ul>
+<h3 id="最大熵模型-1"><a href="#最大熵模型-1" class="headerlink" title="最大熵模型"></a>最大熵模型</h3><ul>
+<li>最大熵模型用于分类  </li>
+<li><p>给定训练集$T=\{(x_1,y_1),(x_2,y_2),…,(x_N,y_N)\}$，则联合分布$P(X,Y)$和边缘分布$P(X)$的经验分布为：</p>
+<script type="math/tex; mode=display">\widetilde{P}(X=x,Y=y)=\frac{v(X=x,Y=y)}{N}</script><script type="math/tex; mode=display">\widetilde{P}(X=x)=\frac{v(X=x)}{N}</script><p>  其中$v(X=x,Y=y)$表示训练数据中样本$(x,y)$出现的频数，$v(X=x)$表示训练数据中输入x出现的频数，N表示训练样本容量</p>
+</li>
+<li><p>特征函数$f(x,y)$描述输入$x$和输出$y$之间的某一事实，定义为</p>
+<script type="math/tex; mode=display">f(x,y)=\begin{cases}1, \quad \text{x与y满足某条件} \\
+  0, \quad \text{否则}\end{cases}</script></li>
+<li><p>特征函数$f(x,y)$关于经验分布$\widetilde{P}(X,Y)$的期望，和关于模型$P(Y|X)$与经验分布$\widetilde{P}(X)$的期望为：</p>
+<script type="math/tex; mode=display">E_{\widetilde{P}}(f)=\sum_{x,y}\widetilde{P}(x,y)f(x,y)</script><script type="math/tex; mode=display">E_{P}(f)=\sum_{x,y}\widetilde{P}(x)P(y|x)f(x,y)</script><p>  如果模型能够获取训练数据中的信息，那么可以假设这两个期望相等</p>
+<script type="math/tex; mode=display">E_{\widetilde{P}}(f)=E_P(f)</script><p>  上式即为模型的约束条件</p>
+</li>
+<li><p>假设有n个特征函数$f_i(x,y)$，那么就有n个约束条件，假设满足所有约束条件的模型集合为：</p>
+<script type="math/tex; mode=display">\mathfrak{C} \equiv \{ P \in \mathfrak{P} | E_{\widetilde{P}}(f_i)=E_P(f_i), i=1,2,...,n \}</script><p>  定义在条件概率分布$P(Y|X)$上的条件熵为：</p>
+<script type="math/tex; mode=display">H(P) = -\sum_{x,y}\widetilde{P}(x)P(y|x)\log P(y|x)</script><p>  则<strong>模型集合C中条件熵$H(P)$最大的模型成为最大熵模型</strong></p>
+</li>
+</ul>
+<h3 id="最大熵模型的学习"><a href="#最大熵模型的学习" class="headerlink" title="最大熵模型的学习"></a>最大熵模型的学习</h3><ul>
+<li><p>最大熵模型的学习等价于约束最优化问题：</p>
+<script type="math/tex; mode=display">\underset{P\in C}{max} \quad \quad H(P) = -\sum_{x,y}\widetilde{P}(x)P(y|x)\log P(y|x)</script><script type="math/tex; mode=display">\begin{aligned}\mathrm{s.t.} \quad \quad &E_{\widetilde{P}}(f_i)=E_P(f_i), i=1,2,...,n \\ &\sum_yP(y|x)  =1 \end{aligned}</script><p>  改写为求最小值问题：</p>
+<script type="math/tex; mode=display">\underset{P\in C}{min} \quad \quad -H(P) = \sum_{x,y}\widetilde{P}(x)P(y|x)\log P(y|x)</script><script type="math/tex; mode=display">\begin{aligned}\mathrm{s.t.} \quad \quad &E_{\widetilde{P}}(f_i)=E_P(f_i), i=1,2,...,n \\ &\sum_yP(y|x)  =1 \end{aligned}</script></li>
+<li><p>通过拉格朗日乘子法转换为无约束最优化的问题：</p>
+<script type="math/tex; mode=display">L(P,w)=\sum_{x,y}\widetilde{P}(x)P(y|x)\log P(y|x) + w_0 \left [ 1- \sum_yP(y|x) \right ] + \sum_{i=1}^n w_i(E_{\widetilde{P}}(f_i)-E_P(f_i))</script><p>  最优化的原始问题是</p>
+<script type="math/tex; mode=display">\underset{P\in C}{min}\quad \underset{w}{max} L(P,w)</script><p>  对偶问题是</p>
+<script type="math/tex; mode=display">\underset{w}{max} \quad \underset{P\in C}{min} L(P,w)</script><ol>
+<li><p>先求内部的极小化问题，将其解记作</p>
+<script type="math/tex; mode=display">P_w=arg \underset{P\in C}{min} L(P,w)=P_w(y|x)</script><p> 具体的，求$L(P,w)$对$P(y|x)$的偏导数：</p>
+<script type="math/tex; mode=display">\begin{aligned} \frac{\partial L(P,w)}{\partial P(y|x)} &= 
+ \sum_{x,y}\widetilde{P}(x)\left (\log P(y|x)+1\right ) - \sum_y w_0 - \sum_{x,y}\left ( \widetilde{P}(x)\sum_{i=1}^n w_if_i(x,y) \right ) \\
+ &= \sum_{x,y}\widetilde{P}(x)\left ( \log P(y|x)+1- w_0 - \sum_{i=1}^n w_if_i(x,y) \right )\end{aligned}</script></li>
+<li><p>令其等于0，在$\widetilde{P}(x)&gt;0$的情况下，解得：</p>
+<script type="math/tex; mode=display">P(y|x)=exp \left ( \sum_{i=1}^n w_if_i(x,y) + w_0 -1 \right ) = \frac{exp( \sum_{i=1}^n w_if_i(x,y))}{exp(1- w_0)}</script><p> 又</p>
+<script type="math/tex; mode=display">\sum_yP(y|x) = 1</script><p> 故解得</p>
+<script type="math/tex; mode=display">P_w(y|x)=\frac{1}{Z_w(x)}exp(\sum_{i=1}^n w_if_i(x,y))</script><script type="math/tex; mode=display">Z_w(x) = \sum_y exp(\sum_{i=1}^n w_if_i(x,y))</script><p> 由上式表示的模型$P_w=P_w(y|x)$就是最大熵模型，w是最大熵模型中的参数向量</p>
+</li>
+<li><p>之后求解对偶问题的外部极大化问题。可以证明：<strong>对偶函数的极大化等价于最大熵模型的极大似然估计</strong>。故将外部极大化问题转换为求解对数似然函数极大化问题：</p>
+<script type="math/tex; mode=display">\begin{aligned} L_{\widetilde{P}}(P_w) &= \log \prod_{x,y}P(y|x)^{\widetilde{P}(x,y)} \\
+ &= \sum_{x,y}\widetilde{P}(x,y)\log P(y|x) \\
+ &= \sum_{x,y}\widetilde{P}(x,y)\sum_{i=1}^nw_if_i(x,y) - \sum_{x,y}\widetilde{P}(x,y)\log Z_w(x) \\
+ &= \sum_{x,y}\widetilde{P}(x,y)\sum_{i=1}^nw_if_i(x,y) - \sum_x\widetilde{P}(x)\log Z_w(x)\end{aligned}</script></li>
+<li><p>通过<strong>梯度下降法、改进的迭代尺度法、牛顿法、拟牛顿法</strong>求解以上问题</p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h2><h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><ul>
+<li><p>支持向量机是一种二分类模型。它的基本模型是定义在特征空间上的使得正负样本间隔最大的线性分类器，间隔最大使它有别于感知机；支持向量机还包括<strong>核技巧</strong>，这使其成为实质上的非线性分类器</p>
+<ul>
+<li><p>SVM约等于带有L2正则的感知机。考虑如下两个优化问题：</p>
+<p>  问题1</p>
+<script type="math/tex; mode=display">\underset{w,b}{min}\frac{1}{n}\sum_{i=1}^nmax(0, -y_i(w\cdot x_i + b))</script><p>  问题2</p>
+<script type="math/tex; mode=display">\underset{w,b}{min}\frac{1}{n}\sum_{i=1}^nmax(0, 1-y_i(w\cdot x_i + b))</script><p>  首先，2的一个最优解一定是1的一个最优解；反过来，1的一个nontrival的最优解总能通过rescaling变为2的一个最优解：         假设</p>
+<script type="math/tex; mode=display">(w^*,b^*) \ne (0,0)</script><p>  是1的一个解，则存在$\alpha$使得</p>
+<script type="math/tex; mode=display">(\alpha w^*, \alpha b^*)</script><p>  是2的一个解。所以1和2在优化问题上讲基本上是等价的。1就是感知机对应的优化问题，SVM (soft margin) 对应的优化问题是</p>
+<script type="math/tex; mode=display">\underset{w,b}{min}\frac{1}{n}\sum_{i=1}^nmax(0, 1-y_i(w\cdot x_i + b))+\lambda ||w||^2_2</script></li>
+<li><p>SVM与感知机的差别在于感知机追求最大程度正确划分，最小化错误，效果类似紫线，容易过拟合；SVM追求在大致正确分类的同时，最大化间隔，一定程度上避免了过拟合，效果类似黑线<br>  <img src="/2018/09/29/机器学习算法总结/4.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p>SVM的学习策略就是间隔最大化，可形式化为一个求解凸二次规划的问题，也等价于正则化的合页损失函数的最小化问题</p>
+</li>
+<li>SVM的最优化算法是求解凸二次规划的最优化算法</li>
+</ul>
+<h3 id="支持向量"><a href="#支持向量" class="headerlink" title="支持向量"></a>支持向量</h3><ul>
+<li>训练数据集中与分离超平面距离最近的样本点的实例称为支持向量</li>
+</ul>
+<h3 id="支持向量机的分类"><a href="#支持向量机的分类" class="headerlink" title="支持向量机的分类"></a>支持向量机的分类</h3><ul>
+<li>线性可分支持向量机：当训练数据线性可分时，通过硬间隔最大化，学习一个线性分类器，即线性可分支持向量机，又称硬间隔支持向量机</li>
+<li>线性支持向量机：当训练数据接近线性可分时，通过软间隔最大化，学习一个线性分类器，即线性支持向量机，又称软间隔支持向量机</li>
+<li>非线性支持向量机：当训练数据线性不可分时，通过使用核技巧及软间隔最大化，学习非线性支持向量机</li>
+</ul>
+<h3 id="核函数与核技巧"><a href="#核函数与核技巧" class="headerlink" title="核函数与核技巧"></a>核函数与核技巧</h3><ul>
+<li>核函数表示将输入从输入空间映射到特征空间后得到的特征向量之间的内积</li>
+<li>核函数能简化映射空间中的内积运算，避免了直接在高维空间中进行计算</li>
+</ul>
+<h3 id="常用核函数"><a href="#常用核函数" class="headerlink" title="常用核函数"></a>常用核函数</h3><ul>
+<li><p>多项式核</p>
+<script type="math/tex; mode=display">K(x_1, x_2)=(<x_1, x_2> + R)^d</script></li>
+<li><p>高斯核</p>
+<script type="math/tex; mode=display">K(x_1, x_2)=exp(-||x_1-x_2||^2 / 2\sigma ^2)</script><p>  高斯核可以将原始空间映射为无穷维空间<br>  不过，如果$\sigma$选得很大的话，高次特征上的权重实际上衰减的非常快，所以相当于一个低维的子空间；反过来，如果$\sigma$选得很小的话，则可以将任意的数据映射为线性可分，随之而来的可能是非常严重的过拟合问题</p>
+</li>
+<li><p>线性核</p>
+<script type="math/tex; mode=display">K(x_1, x_2)=<x_1, x_2></script><p>  实际上就是原始空间中的内积。这个核存在的主要目的是使得“映射后空间中的问题”和“映射前空间中的问题”两者在形式上统一起来</p>
+</li>
+</ul>
+<h3 id="核函数的本质"><a href="#核函数的本质" class="headerlink" title="核函数的本质"></a>核函数的本质</h3><ol>
+<li>实际中，我们会经常遇到线性不可分的情况，此时，常用做法是把样本特征映射到高维空间中去</li>
+<li>但是，映射后的高维空间维度大小可能很高乃至无穷</li>
+<li>此时，我们通过核函数将特征在低维上进行计算，但是实质上的分类效果表现在了高维上，从而避免了直接在高维空间中的复杂计算</li>
+</ol>
+<h3 id="最大间隔超平面背后的原理"><a href="#最大间隔超平面背后的原理" class="headerlink" title="最大间隔超平面背后的原理"></a>最大间隔超平面背后的原理</h3><ul>
+<li><p>相当于在<strong>最小化权重时对训练误差进行了约束</strong></p>
+<blockquote>
+<p>L2范数正则化，则是在最小化训练误差时，对权重进行约束</p>
+</blockquote>
+</li>
+<li><p>相当于<strong>限制了模型复杂度</strong>——在一定程度上防止过拟合，具有更强的泛化能力</p>
+</li>
+</ul>
+<h3 id="支持向量机推导"><a href="#支持向量机推导" class="headerlink" title="支持向量机推导"></a>支持向量机推导</h3><ul>
+<li>SVM由简到繁包括：线性可分支持向量机、线性支持向量机、非线性支持向量机</li>
+</ul>
+<h3 id="线性可分支持向量机推导"><a href="#线性可分支持向量机推导" class="headerlink" title="线性可分支持向量机推导"></a>线性可分支持向量机推导</h3><ul>
+<li>当训练数据线性可分时，通过硬间隔最大化，学习一个线性分类器，即线性可分支持向量机，又称硬间隔支持向量机</li>
+<li>线性SVM的推导分为两部分：<ol>
+<li>如何根据间隔最大化的目标导出SVM的标准问题</li>
+<li>拉格朗日乘子法对偶问题的求解过程</li>
+</ol>
+</li>
+</ul>
+<h3 id="符号定义"><a href="#符号定义" class="headerlink" title="符号定义"></a>符号定义</h3><ul>
+<li><p>训练集T</p>
+<script type="math/tex; mode=display">T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}</script></li>
+<li><p>分离超平面$(w,b)$</p>
+<script type="math/tex; mode=display">w^*\cdot x + b^* = 0</script><p>  如果使用映射函数，那么分离超平面为</p>
+<script type="math/tex; mode=display">w^* \cdot \Phi (x) + b^* = 0</script><blockquote>
+<p>映射函数$\Phi (x)$定义了从输入空间到特征空间的变换，特征空间通常是更高维的，甚至无穷维；方便起见，这里假设$\Phi (x)$做的是恒等变换</p>
+</blockquote>
+</li>
+<li><p>分类决策函数$f(x)$</p>
+<script type="math/tex; mode=display">f(x)=sign(w^*\cdot x + b^*)</script></li>
+</ul>
+<h3 id="SVM标准问题的推导"><a href="#SVM标准问题的推导" class="headerlink" title="SVM标准问题的推导"></a>SVM标准问题的推导</h3><ol>
+<li><p><strong>从“函数间隔”到“几何间隔”</strong><br>给定训练集T和超平面$(w,b)$，定义函数间隔$\hat{\gamma}$：</p>
+<script type="math/tex; mode=display">\hat{\gamma} = \underset{i=1,..,N}{min}y_i(wx_i + b) = \underset{i=1,..,N}{min}\gamma_i</script><p> 对$w$作规范化，使函数间隔成为几何间隔$\gamma$</p>
+<script type="math/tex; mode=display">\begin{aligned} \gamma &= \underset{i=1,..,N}{min}y_i(\frac{w}{||w||}x_i + \frac{b}{||w||}) \\
+ &= \underset{i=1,..,N}{min}\frac{\gamma_i}{||w||}\end{aligned}</script></li>
+<li><p><strong>最大化几何间隔</strong></p>
+<script type="math/tex; mode=display">\underset{w,b}{max} \quad \gamma</script><script type="math/tex; mode=display">\mathrm{s.t.} \quad y_i(\frac{w}{||w||}x_i + \frac{b}{||w||}) \le \gamma, \quad i =1, 2,...,N</script><p> 由函数间隔与几何间隔的关系，等价于</p>
+<script type="math/tex; mode=display">\underset{w,b}{max} \quad \frac{\hat{\gamma}}{||w||}</script><script type="math/tex; mode=display">\mathrm{s.t.} \quad y_i(wx_i + b) \le \hat{\gamma}, \quad i =1, 2,...,N</script><p> 函数间隔$\hat{\gamma}$的取值不会影响最终的超平面$(w,b)$：取$\hat{\gamma} = 1$；又最大化 $1\over||w||$ 等价于最小化${1\over 2} ||w||^2$，于是有</p>
+<script type="math/tex; mode=display">\underset{w,b}{min} \quad \frac{1}{2}||w||^2</script><script type="math/tex; mode=display">\mathrm{s.t.} \quad y_i(wx_i + b) -1 \le 0, \quad i =1, 2,...,N</script><blockquote>
+<p>为什么令$\hat{\gamma}=1$？——比例改变$(ω,b)$，超平面不会改变，但函数间隔$\hat{\gamma}$会成比例改变，因此可以通过等比例改变$(ω,b)$使函数间隔$\hat{\gamma}=1$</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>该约束最优化问题即为线性支持向量机的标准问题——这是一个凸二次优化问题<br>理论上，线性SVM的问题已经解决了；但在高等数学中，带约束的最优化问题还可以用另一种方法求解——拉格朗日乘子法。该方法的优点一是更容易求解，二是自然引入核函数，进而推广到非线性的情况</li>
+</ul>
+<h3 id="SVM对偶算法的推导"><a href="#SVM对偶算法的推导" class="headerlink" title="SVM对偶算法的推导"></a>SVM对偶算法的推导</h3><ol>
+<li><p>用拉格朗日乘子法求解上面标准问题，构建拉格朗日函数</p>
+<script type="math/tex; mode=display">L(w,b,\alpha) = {1\over 2}w^Tw - \sum_{i=1}^N\alpha_i[y_i(w^Tx_i + b)-1]</script><script type="math/tex; mode=display">\mathrm{s.t.} \quad \alpha_i \ge 0, \quad i=1,2,...,N</script></li>
+<li><p>标准问题是求极小极大问题：</p>
+<script type="math/tex; mode=display">\underset{w,b}{min}\quad \underset{\alpha}{max}L(w,b,\alpha)</script><p> 其对偶问题为：</p>
+<script type="math/tex; mode=display">\underset{\alpha}{max} \quad \underset{w,b}{min}L(w,b,\alpha)</script><hr>
+<p> 能转化为对偶问题是因为满足KKT条件：</p>
+<p> 一般地，一个最优化数学模型能够表示成下列标准形式：</p>
+<script type="math/tex; mode=display">min \quad f(x)</script><script type="math/tex; mode=display">\begin{aligned} \mathrm{s.t.} \quad & h_j(x)=0, \quad j=1,...,p \\
+ &g_k(x) \le 0, \quad k=1,...,q \\
+ &x \in \chi \subset \mathfrak{R^n}\end{aligned}</script><p> 其中，$f(x)$是需要最小化的函数，$h(x)$是等式约束，$g(x)$是不等式约束，$p$和$q$分别为等式约束和不等式约束的数量。</p>
+<p> 而KKT条件就是指上面最优化数学模型的标准形式中的最小点$x^*$ 必须满足下面的条件：</p>
+<script type="math/tex; mode=display">\begin{cases}h_j(x^*)=0, j=1,...,p\\ 
+ g_k(x^*)\le0, k=1,...,q\\
+ \Delta f(x^*) + \sum_{j=1}^p\lambda_j \Delta h_j(x^*) + \sum_{k=1}^q \mu_k \Delta g_k(x^*) =0\\
+ \lambda_j \ne 0\\
+ \mu_k \le 0\\
+ \mu_kg_k(x^*)=0 \end{cases}</script><p> 则为满足KKT 条件。</p>
+<hr>
+</li>
+<li><p>求$L$对$(w,b)$的极小</p>
+<script type="math/tex; mode=display">\begin{aligned} \frac{\partial L}{\partial w} =0 &\Rightarrow w- \sum_{i=1}^N\alpha_i y_i x_i = 0\\
+ & \Rightarrow w = \sum_{i=1}^N\alpha_i y_i x_i \\ 
+ \frac{\partial L}{\partial b} = 0 & \Rightarrow \sum_{i=1}^N\alpha_iy_i=0\end{aligned}</script><p> 结果带入$L$，有：</p>
+<script type="math/tex; mode=display">\begin{aligned} L(w,b,\alpha) & = {1\over 2}w^Tw - \sum_{i=1}^N\alpha_i[y_i(w^Tx_i + b)-1] \\
+ &= {1\over 2}w^Tw - w^T\sum_{i=1}^N\alpha_i y_i x_i -b\sum_{i=1}^N\alpha_iy_i + \sum_{i=1}^N\alpha_i \\ 
+ &= {1\over 2}w^Tw - w^Tw + \sum_{i=1}^N\alpha_i \\ 
+ &= -{1\over 2}w^Tw + \sum_{i=1}^N\alpha_i \\ 
+ &= -{1\over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_j\cdot y_iy_j\cdot x_i^Tx_j + \sum_{i=1}^N\alpha_i\end{aligned}</script><p> 即：</p>
+<script type="math/tex; mode=display">\underset{w,b}{min} \quad L(w,b,\alpha) = -{1\over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_j\cdot y_iy_j\cdot x_i^Tx_j + \sum_{i=1}^N\alpha_i</script></li>
+<li><p>求$L$对$\alpha$的极大，即</p>
+<script type="math/tex; mode=display">\underset{\alpha}{max} \quad -{1\over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_j\cdot y_iy_j\cdot x_i^Tx_j + \sum_{i=1}^N\alpha_i</script><script type="math/tex; mode=display">\begin{aligned}\mathrm{s.t.} &\sum_{i=1}^N\alpha_iy_i =0\\
+ &\alpha_i \le 0, i=1,2,...,N\end{aligned}</script><p> 该式只有$\alpha$，可以通过<strong>SMO算法</strong>进行求解。</p>
+</li>
+<li><p>设$\alpha$的解为$\alpha^*$，则存在下标$j$使$\alpha_j &gt; 0$，使得标准问题的解为：</p>
+<script type="math/tex; mode=display">w^*=\sum_{i=1}^N\alpha_i^*y_ix_i</script><script type="math/tex; mode=display">b^*=y_j - \sum_{i=1}^N\alpha_i^*y_i(x_i^Tx_j)</script><p> 可得分离超平面及分类决策函数为：</p>
+<script type="math/tex; mode=display">w^*\cdot x + b^* = 0</script><script type="math/tex; mode=display">f(x) = sign(w^*\cdot x + b^*)</script></li>
+</ol>
+<h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><ul>
+<li>决策树的训练通常由三部分组成：特征选择、树的生成、剪枝。</li>
+</ul>
+<h3 id="信息增益、Gini系数、信息增益率"><a href="#信息增益、Gini系数、信息增益率" class="headerlink" title="信息增益、Gini系数、信息增益率"></a>信息增益、Gini系数、信息增益率</h3><ul>
+<li>三个指标均是决策树用来划分属性的时候用到的</li>
+<li>信息增益用于ID3，Gini系数用户CART，信息增益率用预C4.5</li>
+<li><p>信息增益，即决策树在进行属性选择划分前后的信息差值</p>
+<script type="math/tex; mode=display">\begin{aligned} IG(T) &= H(C) -H(C|T) \\
+  &= -\sum_{i=1}^nP(C_i)\log_2P(C_i) + P(t)\sum_{i=1}^nP(C_i|t)\log_2P(C_i|t)+P(\overline{t})\sum_{i=1}^nP(C_i|\overline{t})\log_2P(C_i|\overline{t}) \end{aligned}</script><p>  其中C是分类的类别，T是属性<br>  算法会选择信息增益最大的属性来划分</p>
+</li>
+<li><p>信息增益在面对类别较少的离散数据时效果较好，但是如果面对连续数据或者某个属性存在大量不同值时，效果很差。原因是为了使信息增益最大，算法会倾向于将每个数据分成一类，此时$H(C|T)=0$。但是这样的划分显然是有问题的，容易过拟合。</p>
+</li>
+<li><p>信息增益率是用信息增益除以一个分裂信息量得到的。分裂信息用来衡量属性分裂数据的广度和均匀程度。</p>
+<script type="math/tex; mode=display">IV(T)=-\sum_{i=1,t\in T}^nP(t_i)\log_2P(t_i)</script><p>  因此信息增益率为</p>
+<script type="math/tex; mode=display">IGR(T)=\frac{IG(T)}{IV(T)}</script></li>
+<li><p>信息增益与信息增益率是基于熵的，会设计大量对数运算，CART中采用Gini系数来代替信息增益率。Gini系数代表了模型的不纯度，Gini系数越小，则不纯度越好，特征越好。</p>
+</li>
+<li><p>Gini系数表达式为：</p>
+<script type="math/tex; mode=display">Gini(P) = \sum_{i=1}^nP(C_i)(1-P(C_i)) = 1-\sum_{i=1}^nP(C_i)^2</script></li>
+</ul>
+<h3 id="ID3决策树"><a href="#ID3决策树" class="headerlink" title="ID3决策树"></a>ID3决策树</h3><ol>
+<li>使用数据集S计算每个属性的熵</li>
+<li>计算用每个属性的每个值作为分裂条件将集合S分裂为子集后的信息增益，选择信息增益最大的属性将S分裂为子集</li>
+<li>用该属性构建一个决策树结点</li>
+<li>在剩下的属性上循环以上过程</li>
+</ol>
+<ul>
+<li>ID3并不保证得到最优决策树，它可能陷入局部最优。它通过选择最佳属性来分裂数据集，因此是一种贪婪算法</li>
+<li>ID3可能会过拟合。为了避免过拟合，应该优先选择较小的决策树</li>
+<li>ID3很难在连续数据上使用，因为在一个属性上可以有无限个选择分割点，计算耗时很大</li>
+</ul>
+<h3 id="C4-5算法"><a href="#C4-5算法" class="headerlink" title="C4.5算法"></a>C4.5算法</h3><ul>
+<li>C4.5与ID3最大的不同是，C4.5采用信息增益率作为分裂标准</li>
+<li>C4.5对ID3进行了一些改进，包括：<ol>
+<li>处理连续和离散属性：C4.5创建了一个阈值，然后将数据拆分为高于阈值和小于阈值的两部分数据</li>
+<li>处理缺少属性值的训练数据：C4.5允许将属性值标记为？作为缺失值，缺失的属性值不用于增益计算</li>
+<li>处理具有不同成本的属性</li>
+<li>建立树后进行剪枝：C4.5会尝试通过用叶节点替换来删除无效的分支</li>
+</ol>
+</li>
+</ul>
+<h3 id="树的剪枝"><a href="#树的剪枝" class="headerlink" title="树的剪枝"></a>树的剪枝</h3><ul>
+<li>将已生成的数进行简化的过程称为剪枝。具体的，剪枝从已生成的书上裁剪掉一些子树或叶结点，并将其根结点或父节点作为新的叶结点，从而简化分类树模型</li>
+<li>决策树的剪枝是通过极小化决策树整体的损失函数或代价函数来实现的</li>
+<li><p>决策树的损失函数可以定义为：</p>
+<script type="math/tex; mode=display">\begin{aligned}C_{\alpha}(T)&=\sum_{t=1}^{|T|}N_tH_t(T) + \alpha|T|\\
+  &= -\sum_{t=1}^{|T|}\sum_{k=1}^KN_{tk}\log \frac{N_{tk}}{N_t} + \alpha|T| \\
+  \mathrm{s.t.} \quad \alpha &\le 0 \end{aligned}</script><p>  其中，$|T|$为树$T$的叶节点个数，$t$是树$T$的叶节点，该叶结点上有$N_t$个样本，其中$k$类的样本有$N_{tk}$个</p>
+<ul>
+<li>较大的$\alpha$促使选择较简单的模型，较小的$\alpha$促使选择较复杂的模型，$\alpha=0$意味着只考虑拟合程度不考虑模型复杂度</li>
+<li>剪枝就是当$\alpha$确定时，选择损失函数最小的模型</li>
+</ul>
+</li>
+<li><p>剪枝算法：</p>
+<ol>
+<li>计算每个节点的熵</li>
+<li><p>递归地从树的叶结点向上回缩，设一组叶结点回缩到其父结点之前与之后的整体数分别为$T_A$和$T_B$，对应的损失函数分别为$C_{\alpha}(T_A)$和$C_{\alpha}(T_B)$，如果</p>
+<script type="math/tex; mode=display">C_{\alpha}(T_B) \le C_{\alpha}(T_A)</script><p> 则进行剪枝，即将其父结点变为新的叶结点</p>
+</li>
+<li><p>返回2直至不能继续为止，得到损失函数最小的子树$T_\alpha$</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="CART算法"><a href="#CART算法" class="headerlink" title="CART算法"></a>CART算法</h3><ul>
+<li>CART：分类与回归树，是一种给定输入随机变量X条件下输出随机变量Y的<strong>条件概率分布</strong>的学习方法</li>
+<li><p>CART假设决策树是<strong>二叉树</strong>，内部结点特征的取值为“<strong>是</strong>”和“<strong>否</strong>”<br>  这样的决策树等价于递归地二分每个特征，将输入空间即特征空间划分为有限个单元，然后在这些单元上确定输入给定的条件下的条件概率分布</p>
+</li>
+<li><p>CART决策树既可用于分类，也可用于回归</p>
+</li>
+<li>对回归树CART算法用<strong>平方误差最小化</strong>准则来选择特征，对分类树用<strong>Gini指数最小化</strong>准则来选择</li>
+</ul>
+<h3 id="CART回归树算法推导"><a href="#CART回归树算法推导" class="headerlink" title="CART回归树算法推导"></a>CART回归树算法推导</h3><ul>
+<li>一个回归树对应着输入空间即特征空间的一个划分以及划分单元上的输出值</li>
+<li><p>假设已将输入空间划分为$M$个单元，${R_1,..,R_m,..,R_M}$，并在每个单元上对应有输出值$c_m$，则该回归树可表示为：</p>
+<script type="math/tex; mode=display">f(x) =\sum_{m=1}^Mc_mI(x \in R_m)</script><blockquote>
+<p>$I(x)$为指示函数</p>
+</blockquote>
+</li>
+<li><p>如果<strong>已经划分好了输入空间</strong>，通常使用<strong>平方误差</strong>作为损失函数来表示回归树对于训练数据的预测误差，通过最小化损失函数来求解每个划分单元的最优输出值</p>
+</li>
+<li><p>如果使用平方误差，易知最优输出值即每个划分单元上所有实例的均值</p>
+<script type="math/tex; mode=display">\hat{c_m}=avg(y_i|x_i \in R_m)</script></li>
+</ul>
+<h3 id="如何划分输入空间"><a href="#如何划分输入空间" class="headerlink" title="如何划分输入空间"></a>如何划分输入空间</h3><ul>
+<li>一个启发式方法是：<strong>以特征向量中某一个特征为标准进行切分</strong></li>
+<li>在训练数据集所在的输入空间中，递归的将每个区域划分为两个子区域并决定每个子区域上的输出值，构建二叉决策树：</li>
+</ul>
+<ol>
+<li><p>假设选择特征向量中第$j$个变量作为切分变量，然后选择某个实例中第$j$个值$s$作为切分点，则定义如下两个划分单元</p>
+<script type="math/tex; mode=display">R_1(j,s)=\{x|x^{(j)} \le s\}, \quad R_2(j,s)=\{x|x^{(j)} > s\}</script></li>
+<li><p>遍历每个实例的第j个值s，选择满足以下条件的作为最优切分变量j和切分点s：</p>
+<script type="math/tex; mode=display">\underset{j,s}{min}\left [ \underset{c_1}{min} \sum_{x_i \in R_1(j,s)}(y_i -c_1)^2 + \underset{c_2}{min} \sum_{x_i \in R_2(j,s)} (y_i-c_2)^2 \right ]</script><p> 其中输出值$c_1$和$c_2$分别为</p>
+<script type="math/tex; mode=display">\hat{c_1} = avg(y_i|x_i \in R_1(j,s)), \quad \hat{c_2} = avg(y_i|x_i \in R_2(j,s))</script></li>
+<li><p>继续对两个子区域重复以上步骤，直至满足停止条件。将输入空间划分为M个区域的决策树：</p>
+<script type="math/tex; mode=display">f(x)=\sum_{m=1}^M\hat{c_m}I(x \in R_m)</script></li>
+</ol>
+<hr>
+<h3 id="示例：选择切分变量与切分点"><a href="#示例：选择切分变量与切分点" class="headerlink" title="示例：选择切分变量与切分点"></a>示例：选择切分变量与切分点</h3><ul>
+<li>训练集</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>$x_i$</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$y_i$</td>
+<td>5.56</td>
+<td>5.70</td>
+<td>5.91</td>
+<td>6.40</td>
+<td>6.80</td>
+<td>7.05</td>
+<td>8.90</td>
+<td>8.70</td>
+<td>9.00</td>
+<td>9.05</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>这里只有一个特征，即$j=1$；然后遍历每个实例的值作为切分点$s = \{1, 2, 3, 4, 5, 6, 7, 8, 9\}$</p>
+<blockquote>
+<p>原书使用的切分点为 {1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5}，即相邻两个点的均值；因为切分点并没有参与运算，所以两者没有区别；<br>  最后一个点无法将数据划分为两个空间，所以不需要</p>
+</blockquote>
+</li>
+<li><p>以$s=1$为例</p>
+<script type="math/tex; mode=display">R_1(1,1)=\{x|x \le 1\} = \{1\}</script><script type="math/tex; mode=display">R_2(1,1)=\{x|x > 1  \} = \{2,3,4,5,6,7,8,9,10\}</script><script type="math/tex; mode=display">c_1 = \frac{1}{|R_1|}=\frac{1}{1}\sum_{x_i \in R_1}y_i = 5.56</script><script type="math/tex; mode=display">c_2 = \frac{1}{|R_2|}=\frac{1}{9}\sum_{x_i \in R_2}y_i = 7.50</script><script type="math/tex; mode=display">m(s)=\underset{c_1}{min}\sum_{x_i \in R_1}(y_i-c_1)^2 + \underset{c_2}{min}\sum_{x_i \in R_2}(y_i-c_2)^2 = 0 + 15.72=15.72</script><p>  所有 m(s) 的计算结果如下</p>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>s</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m(s)</td>
+<td>15.72</td>
+<td>12.07</td>
+<td>8.36</td>
+<td>5.78</td>
+<td>3.91</td>
+<td>1.93</td>
+<td>8.01</td>
+<td>11.73</td>
+<td>15.74</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>当s=6时m(s)达到最小，此时</p>
+<script type="math/tex; mode=display">R_1(1,6)=\{x|x \le 6\} = \{1,2,3,4,5,6\}</script><script type="math/tex; mode=display">R_2(1,6)=\{x|x > 6  \} = \{7,8,9,10\}</script><script type="math/tex; mode=display">c_1 = \frac{1}{|R_1|}=\frac{1}{6}\sum_{x_i \in R_1}y_i = 6.24</script><script type="math/tex; mode=display">c_2 = \frac{1}{|R_2|}=\frac{1}{4}\sum_{x_i \in R_2}y_i = 8.91</script></li>
+<li><p>所以第一颗决策树为</p>
+<script type="math/tex; mode=display">T_1(x)=\begin{cases}6.24, \quad x<6 \\ 8.91, \quad x \ge 6\end{cases}</script><script type="math/tex; mode=display">f_1(x)=T_1(x)</script></li>
+</ul>
+<hr>
+<h3 id="CART分类树算法"><a href="#CART分类树算法" class="headerlink" title="CART分类树算法"></a>CART分类树算法</h3><ul>
+<li>分类树用基尼指数选择最优特征，同时决定该特征的最优二值切分点</li>
+<li>根据训练数据，从根结点开始，递归的对每个结点进行一下操作，构建二叉决策树：</li>
+</ul>
+<ol>
+<li>结点的训练数据为$D$，计算现有特征对该数据集的基尼指数。</li>
+<li><p>对每个特征$A$，对其每个可能取值$a$，根据样本点对$A=a$的测试为“是”或“否”将$D$分割成$D_1$和$D_2$两部分，计算$A=a$时的基尼指数：</p>
+<script type="math/tex; mode=display">Gini(D,A)=\frac{|D_1|}{|D|}Gini(D_1)+\frac{|D_2|}{|D|}Gini(D_2)</script><p> 其中</p>
+<script type="math/tex; mode=display">Gini(D) = 1- \sum_{k=1}^K(\frac{|C_k|}{|D|})^2</script><p> $C_k$是$D$中属于第$k$类的样本子集，$K$是类的个数</p>
+</li>
+<li><p>在所有可能的特征$A$以及它们所有可能的切分点$a$中，选择基尼指数最小的特征及其对应的切分点作为最优特征和最优切分点将数据集$D$切分为$D_1$和$D_2$</p>
+</li>
+<li><p>对两个子结点递归的重复以上过程，直至满足停止条件。</p>
+<blockquote>
+<p>停止条件是结点中的样本个数小于阈值，或者样本集的基尼指数小于预定阈值（样本基本属于同一类），或者没有更多的特征</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="集成学习"><a href="#集成学习" class="headerlink" title="集成学习"></a>集成学习</h2><ul>
+<li>基本思想：由多个学习器组合成一个更好的学习器</li>
+<li><strong>集成学习为什么有效？</strong><br>  不同模型通常会在测试集上产生不同的误差。平均上，集成模型能够至少与其任一成员表现一致；并且<strong>如果成员的误差是独立的</strong>，集成模型将显著的比其成员的表现更好。</li>
+</ul>
+<h3 id="集成学习的基本策略"><a href="#集成学习的基本策略" class="headerlink" title="集成学习的基本策略"></a>集成学习的基本策略</h3><ol>
+<li><strong>Boosting</strong><ul>
+<li>Boosting（提升）方法从某个基学习器出发，反复学习，得到一系列基学习器，然后组合它们构成一个强学习器</li>
+<li>Boosting基于<strong>串行策略</strong>：基学习器之间存在依赖关系，新的学习器需要依据旧的学习器生成</li>
+<li>从偏差-方差分解的角度看，<strong>Boosting主要关注降低偏差</strong>，因此Boosting能基于泛化性能相当弱的学习器构建出很强的集成</li>
+<li>代表算法/模型：<ul>
+<li>提升方法AdaBoost</li>
+<li>提升树Boosting Tree</li>
+<li>梯度提升树GBDT</li>
+</ul>
+</li>
+<li>Boosting策略要解决两个基本问题：<ol>
+<li>每一轮如何改变数据的权值或概率分布？</li>
+<li>如何将弱分类器组合成一个强分类器？</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>Bagging</strong></p>
+<ul>
+<li><p>Bagging基于自助采样法（bootstrap sampling）在包含m个样本的数据集中采样出T个含m个训练样本的采样集，然后基于每个采样集训练一个基学习器，再将这些基学习器进行结合</p>
+<blockquote>
+<p>自助采样法：有放回的采样</p>
+</blockquote>
+</li>
+<li><p>自助采样法使得每个基学习器只使用了初始训练集中的63.2%的样本，剩下36.8%的样本可用作验证集来对泛化性能进行“包外估计”</p>
+<ul>
+<li><p>剩下36.8%的原因：</p>
+<script type="math/tex; mode=display">\underset{m\to \infty}{lim}(1-\frac{1}{m})^m = \frac{1}{e} \approx 0.368</script></li>
+<li><p>令$h_t$表示训练的基学习器，$D_t$表示$h_t$实际使用的训练样本集，$H^{oob}(x)$表示对样本$x$的包外预测，即仅考虑那些未使用$x$训练的基学习器在$x$上的预测，有：</p>
+<script type="math/tex; mode=display">H^{oob}(x)=arg\underset{y}{max}\sum_{t=1}^TI(h_t(x) = y)\cdot I(x \notin D_t)</script><p>  则Bagging泛化误差的包外估计为</p>
+<script type="math/tex; mode=display">e^{oob}=\frac{1}{|D|}\sum_{(x,y)\in D}I(H^{oob}(x) \ne y)</script></li>
+</ul>
+</li>
+<li><p>Bagging基于并行策略：基学习器之间不存在依赖关系，可同时生成</p>
+</li>
+<li>从偏差-方差分解的角度看，Bagging主要关注降低方差，因此它在不剪枝决策树、神经网络等易受样本扰动的学习器上效果更为明显</li>
+<li>代表算法/模型：<ul>
+<li>随机森林</li>
+<li>神经网络的Dropout策略</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Stacking</strong><ul>
+<li>stacking是一种组合不同模型的方法，一般方法为：<ol>
+<li>划分训练数据集为两个不想交的集合</li>
+<li>在第一个集合上训练多个学习器</li>
+<li>在第二个集合上测试这几个学习器</li>
+<li>把第3步得到的预测结果作为输入，把正确的回应作为输出，训练一个高层学习器</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="AdaBoost算法"><a href="#AdaBoost算法" class="headerlink" title="AdaBoost算法"></a>AdaBoost算法</h2><ul>
+<li>AdaBoost是Boosting策略的一种具体算法</li>
+</ul>
+<h3 id="AdaBoost算法解决Boosting两个基本问题的方法："><a href="#AdaBoost算法解决Boosting两个基本问题的方法：" class="headerlink" title="AdaBoost算法解决Boosting两个基本问题的方法："></a>AdaBoost算法解决<strong><em>Boosting两个基本问题</em></strong>的方法：</h3><ol>
+<li>每一轮如何改变数据的权值或概率分布？——开始时，每个样本的权值是一样的，AdaBoost的做法是提高上一轮弱分类器错误分类的权值，同时降低那些被正确分类样本的权值</li>
+<li>如何将弱分类器组合成一个强分类器？——AdaBoost采取加权表决的方法（加法模型）。具体的，AdaBoost会加大分类误差率小的基学习器的权值，使其在表决中起到更大的作用，同时减少分类误差率大的基学习器的权值</li>
+</ol>
+<h3 id="AdaBoost算法描述"><a href="#AdaBoost算法描述" class="headerlink" title="AdaBoost算法描述"></a>AdaBoost算法描述</h3><ul>
+<li>输入：训练集 $T={(x_1,y_1),..,(x_N,y_N)}, x_i \in R^n, y_i \in \{-1,+1\}$，基学习器$G_1(x)$</li>
+<li>输出：最终学习器$G(x)$</li>
+</ul>
+<ol>
+<li><p>初始化训练数据的权值分布</p>
+<script type="math/tex; mode=display">D_1=(w_{1,1},...,w_{1,i},...,w_{1,N})</script><script type="math/tex; mode=display">w_{1,i}=\frac{1}{N}, i=1,2,...,N</script></li>
+<li><p>对$m=1,2,…,M$：</p>
+<ol>
+<li><p>使用权值分布为$D_m$的训练集，得到基分类器：</p>
+<script type="math/tex; mode=display">G_m(x): \chi \to \{-1, +1\}</script></li>
+<li><p>计算$G_m(x)$在训练集上的分类误差率：</p>
+<script type="math/tex; mode=display">\begin{aligned}e_m&=P(G_m(x_i) \ne y_i) \\ &=\sum_{i=1}^Nw_{m,i} \cdot I(G_m(x_i) \ne y_i)\end{aligned}</script><blockquote>
+<p>$I(x)$为指示函数：若$G(x)\ne y$为真，则$I(G(x)\ne y)=1$，反之为0<br> 实际上分类误差率就等于所有分类错误的数据的权值之和</p>
+</blockquote>
+</li>
+<li><p>计算$G_m(x)$的系数</p>
+<script type="math/tex; mode=display">\alpha_m=\frac{1}{2}\ln\frac{1-e_m}{e_m}</script></li>
+<li><p>更新训练集的权值分布</p>
+<script type="math/tex; mode=display">D_{m+1}=(w_{m+1,1},...,w_{m+1,i},...,w_{m+1,N})</script><script type="math/tex; mode=display">w_{m+1,i}=\frac{w_{m,1}\cdot exp(-\alpha_my_iG_m(x_i))}{Z_m}</script><script type="math/tex; mode=display">Z_m=\sum_{i=1}^Nw_{m,i}\cdot exp(-\alpha_my_iG_m(x_i))</script><p> 其中$Z_m$为规范化因子，使$D_{m+1}$成为一个概率分布，类似Softmax函数<br> 因为$y，G(x)\in {-1, 1}$，所以实际上</p>
+<script type="math/tex; mode=display">y_iG_m(x_i)=\begin{cases}1, \quad G_m(x_i)=y_i \\ -1, \quad G_m(x_i) \ne y_i \end{cases}</script><p> 因此$w_{m+1,i}$ 也可以写作</p>
+<script type="math/tex; mode=display">w_{m+1,i}=\begin{cases}\frac{w_{m,i}}{Z_m}e^{-\alpha_m}, \quad \quad G_m(x_i)=y_i \\ \frac{w_{m,i}}{Z_m}e^{\alpha_m}, \quad \quad G_m(x_i)\ne y_i \end{cases}</script></li>
+</ol>
+</li>
+<li><p>构建基学习器的<strong>线性组合</strong>，得到最终分类器</p>
+<script type="math/tex; mode=display">G(x)=sign(\sum_{m=1}^M\alpha_mG_m(x))</script></li>
+</ol>
+<h3 id="AdaBoost算法要点说明"><a href="#AdaBoost算法要点说明" class="headerlink" title="AdaBoost算法要点说明"></a>AdaBoost算法要点说明</h3><ul>
+<li>开始时，训练集中所有数据具有均匀的权值分布</li>
+<li>计算分类误差率，实际上就是计算所有分类错误的数据的权值之和</li>
+<li><p>$G_m(x)$的系数$\alpha_m$表示该学习器在最终学习器中的重要性,公式</p>
+<script type="math/tex; mode=display">\alpha_m=\frac{1}{2}\ln\frac{1-e_m}{e_m}</script><p>  表明当分类错误率$e_m \le {1\over 2}$时，$\alpha_m \ge 0$，并且$\alpha_m $随$e_m$的减小而增大</p>
+</li>
+<li><p>被基分类器分类错误的样本权值会扩大，而分类正确的权值会缩小——<strong>不改变训练数据，而不断改变训练数据权值的分布，使训练数据在基学习器的学习中起到不同的作用</strong>，这是AdaBoost的一个特点</p>
+</li>
+</ul>
+<h2 id="前向分布算法"><a href="#前向分布算法" class="headerlink" title="前向分布算法"></a>前向分布算法</h2><ul>
+<li><strong>AdaBoost算法还可以认为是模型为加法模型、损失函数为指示函数、学习算法为前向分布算法的二分类学习方法</strong></li>
+</ul>
+<h3 id="加法模型"><a href="#加法模型" class="headerlink" title="加法模型"></a>加法模型</h3><ul>
+<li><p>定义加法模型：</p>
+<script type="math/tex; mode=display">f(x)=\sum_{m=1}^M\beta_mb(x;\gamma_m)</script><p>  其中$b(x;\gamma_m)$为基函数，$\gamma$为基函数的参数;$\beta$为基函数的系数</p>
+</li>
+<li><p>在给定训练数据和损失函数$L(y，f(x))$的情况下，学习加法模型相当于经验风险最小化即损失函数的最小化问题：</p>
+<script type="math/tex; mode=display">\underset{\beta_m, \gamma_m}{min}\quad\sum_{i=1}^NL\left (y_i, \sum_{m=1}^M\beta_mb(x;\gamma_m)\right )</script></li>
+</ul>
+<h3 id="前向分布算法描述"><a href="#前向分布算法描述" class="headerlink" title="前向分布算法描述"></a>前向分布算法描述</h3><p>前向分布算法求解加法模型的想法是：如果能够从前向后，每一步只学习一个基函数及其系数，逐步优化目标函数</p>
+<ul>
+<li>输入：训练集$T=\{(x_1,y_1),..,(x_N,y_N)\}$，损失函数$L(y,f(x))$，基函数集 $\{b(x;\gamma)\}$</li>
+<li>输出：加法模型$f(x)$</li>
+</ul>
+<ol>
+<li>初始化$f_0(x)=0$</li>
+<li><p>m=1,2,..,M</p>
+<ol>
+<li><p>极小化损失函数，得到$(\beta_m,\gamma_m)$</p>
+<script type="math/tex; mode=display">(\beta_m,\gamma_m)=arg\underset{\beta,\gamma}{min}\sum_{i=1}^NL(y_i, f_{m=1}(x_i)+\beta b(x_i;\gamma))</script></li>
+<li><p>更新模型$f_m(x)$</p>
+<script type="math/tex; mode=display">f_m(x)=f_{m-1}(x)+\beta b(x;\gamma)</script></li>
+</ol>
+</li>
+<li><p>得到加法模型</p>
+<script type="math/tex; mode=display">f(x)=f_M(x)=\sum_{m=1}^M\beta_mb(x;\gamma_m)</script></li>
+</ol>
+<ul>
+<li>前向分布算法将<strong>同时</strong>求解m=1,2,…,M所有参数$(\beta_m,\gamma_m)$的问题简化为逐次求解各$(\beta_m,\gamma_m)$的优化问题——思想上有点像梯度下降</li>
+</ul>
+<h3 id="前向分布算法与AdaBoost"><a href="#前向分布算法与AdaBoost" class="headerlink" title="前向分布算法与AdaBoost"></a>前向分布算法与AdaBoost</h3><ul>
+<li>AdaBoost算法是前向分布算法的特例</li>
+<li><p>此时，基函数为基分类器，损失函数为指示函数</p>
+<script type="math/tex; mode=display">L(y,f(x)) = exp(-y*f(x))</script></li>
+</ul>
+<h2 id="梯度提升决策树GBDT"><a href="#梯度提升决策树GBDT" class="headerlink" title="梯度提升决策树GBDT"></a>梯度提升决策树GBDT</h2><ul>
+<li>GBDT是以<strong>决策树（一般为CART决策树）</strong>为基学习器、采用Boosting策略的一种集成学习模型</li>
+<li><strong>与提升树的区别：</strong>残差的计算不同，提升树使用的是真正的残差，梯度提升树使用的当前模型的<strong>负梯度</strong>来拟合残差</li>
+</ul>
+<h3 id="提升树Boosting-Tree"><a href="#提升树Boosting-Tree" class="headerlink" title="提升树Boosting Tree"></a>提升树Boosting Tree</h3><ul>
+<li>以决策树为基学习器，对分类问题使用二叉分类树，回归问题使用二叉回归树</li>
+<li>解决回归问题时，通过不断拟合残差得到新的树</li>
+<li><p>提升树模型可表示为<strong>决策树的加法模型：</strong></p>
+<script type="math/tex; mode=display">f_M(x)=\sum_{m=1}^MT(x;\Theta_m)</script></li>
+<li><p>首先初始化提升树$f_0(x)=0$，则第m步的模型为</p>
+<script type="math/tex; mode=display">f_m(x)=f_{m-1}(x)+T(x;\Theta_m)</script></li>
+<li><p>然后通过最小化损失函数决定下一个决策树的参数</p>
+<script type="math/tex; mode=display">\widetilde{\Theta}_m=arg\underset{\Theta_m}{min}\sum_{i=1}^NL(y_i, f_{m-1}(x_i)+T(x;\Theta_m))</script></li>
+<li><p>对于二分类问题，提升树算法只需要将AdaBoost算法中的基学习器限制为二叉分类树即可</p>
+</li>
+</ul>
+<h3 id="提升树算法描述"><a href="#提升树算法描述" class="headerlink" title="提升树算法描述"></a>提升树算法描述</h3><p>在回归问题中，新的树是通过不断的<strong>拟合残差</strong>得到的：</p>
+<ul>
+<li>输入：$T=(x_1,y_1),..,(x_N,y_N)\}, x_i \in R^n, y_i \in R$</li>
+<li>输出：回归提升树$f_M(x)$</li>
+</ul>
+<ol>
+<li>初始化$f_0(x)=0$</li>
+<li><p>对m=1,2,…,M</p>
+<ol>
+<li><p>计算残差</p>
+<script type="math/tex; mode=display">r_{m,i}=y_i-f_{m-1}(x_i), i=1,2,...,N</script></li>
+<li><p>拟合残差学习下一个回归树的参数</p>
+<script type="math/tex; mode=display">\hat{\Theta}_m=arg\underset{\Theta_m}{min}\sum_{i=1}^NL(r_{m,i}, T(x_i;\Theta_m))</script></li>
+<li><p>更新f_m(x)</p>
+<script type="math/tex; mode=display">f_m(x)=f_{m-1}(x)+T(x;\Theta_m)</script></li>
+</ol>
+</li>
+<li><p>得到回归提升树</p>
+<script type="math/tex; mode=display">f_M(x)=\sum_{m=1}^MT(x;\Theta_m)</script></li>
+</ol>
+<h3 id="梯度提升（GB）算法"><a href="#梯度提升（GB）算法" class="headerlink" title="梯度提升（GB）算法"></a>梯度提升（GB）算法</h3><ul>
+<li>当损失函数为平方损失或指数损失时，每一步的优化是很简单的；但对一一般的损失函数而言，不太容易。梯度提升算法是针对这一问题提出的</li>
+<li>梯度提升是梯度下降的近似方法，其关键是利用<strong>损失函数的负梯度作为残差的近似值</strong>，来拟合下一个决策树</li>
+</ul>
+<h3 id="梯度提升决策树（GBDT）算法描述"><a href="#梯度提升决策树（GBDT）算法描述" class="headerlink" title="梯度提升决策树（GBDT）算法描述"></a>梯度提升决策树（GBDT）算法描述</h3><ul>
+<li>输入：训练集$T=\{(x_1,y_1),..,(x_N,y_N)\}, x_i \in R^n, y_i \in R$；损失函数$L(y,f(x))$</li>
+<li>输出：回归树$f_M(x)$</li>
+</ul>
+<ol>
+<li><p>初始化回归树</p>
+<script type="math/tex; mode=display">f_0(x)=arg\underset{c}{min}\sum_{i=1}^NL(y_i, c)</script></li>
+<li><p>对m=1,2,…,M</p>
+<ol>
+<li><p>对i=1,2,…,N，计算残差，即负梯度</p>
+<script type="math/tex; mode=display">r_{m,i}=-\frac{\partial L(y_i,f_{m-1}(x_i))}{\partial f_{m-1}(x_i)}</script></li>
+<li><p>对$r_{m,i}$拟合一个回归树，得到第m棵树的叶结点区域</p>
+<script type="math/tex; mode=display">R_{m,j}, \quad j=1,2,...,J</script><blockquote>
+<p>详见上面CART回归树算法推导</p>
+</blockquote>
+</li>
+<li><p>对于j=1,2,…,J，计算</p>
+<script type="math/tex; mode=display">c_{m,j}=arg\underset{c}{min}\sum_{x_i\in R_{m,j}}L(y_i, f_{m-1}(x_i)+c)</script></li>
+<li><p>更新回归树</p>
+<script type="math/tex; mode=display">f_m(x)=f_{m+1}(x)+\sum_{j=1}^Jc_{m,j}I(x\in R_{m,j})</script></li>
+</ol>
+</li>
+<li><p>得到回归树</p>
+<script type="math/tex; mode=display">f_M(x)=\sum_{i=1}^M\sum_{j=1}^Jc_{m,j}I(x\in R_{m,j})</script></li>
+</ol>
+<ul>
+<li>说明：<ul>
+<li>算法第1步初始化，估计使损失函数最小的常数值，得到一棵只有一个根结点的树</li>
+<li>第2(1)步计算损失函数的负梯度，将其作为残差的估计<ul>
+<li>对于平方损失而言，负梯度就是残差；对于一般的损失函数，它是残差的近似</li>
+</ul>
+</li>
+<li>第2(2)步估计回归树的结点区域，以拟合残差的近似值</li>
+<li>第2(3)步利用线性搜索估计叶结点区域的值，使损失函数最小化</li>
+</ul>
+</li>
+</ul>
+<h2 id="XGBoost算法"><a href="#XGBoost算法" class="headerlink" title="XGBoost算法"></a>XGBoost算法</h2><ul>
+<li>XGBoost是改进的GBDT算法</li>
+<li>XGBoost是对梯度提升（GB）算法的高效实现</li>
+</ul>
+<h3 id="XGBoost与GBDT的主要区别"><a href="#XGBoost与GBDT的主要区别" class="headerlink" title="XGBoost与GBDT的主要区别"></a>XGBoost与GBDT的主要区别</h3><ul>
+<li><p>首先，定义一棵树$f(x)$为</p>
+<script type="math/tex; mode=display">f_t(x)=w_q(x), \quad w\in R^T, \quad q:R^d\to \{1,2,...,T\}</script><p>  其中，$w$是得分向量，表示每个叶子的权重，$q$是将每个数据点分配给相应叶子的函数，$T$是叶子数</p>
+</li>
+</ul>
+<ol>
+<li><p>XGBoost中对损失函数加入<strong>正则项</strong>，包括L2权重衰减和对叶子数的限制</p>
+<script type="math/tex; mode=display">L(\theta)=\sum_{i=1}^nl(y_i,\hat{y}_i^{(t)}) + \sum_{i=1}^t\Omega(f_i)</script><p> 其中，正则项为：</p>
+<script type="math/tex; mode=display">\Omega(f)=\gamma T+\frac{1}{2}\lambda\sum_{j=1}^Tw_j^2</script></li>
+<li><p>使用牛顿法代替梯度下降法寻找最优解</p>
+<p> XGboost使用<strong>一阶+二阶导数作为残差</strong>，GBDT只使用了<strong>一阶导数</strong></p>
+</li>
+<li><p>传统CART树寻找最优切分点的标准是最小化均方差；XGBoost通过最大化得分公式来寻找最优切分点，得分公式如下：</p>
+<script type="math/tex; mode=display">Gain=\frac{1}{2}\left [ \frac{G_L^2}{H_L+\lambda} + \frac{G_R^2}{H_R+\lambda} - \frac{G_L^2+G_R^2}{H_L+H_R+\lambda} \right ] - \gamma</script><p> 其中G是残差中一阶部分的和，H是二阶部分的和</p>
+<script type="math/tex; mode=display">G_j=\sum_{i\in I_j}g_i \quad H_j=\sum_{i\in I_j}h_i</script><p> $g_i$是一阶导数，$h_j$是二阶导数</p>
+<ul>
+<li><p>该公式可以分解为1. 新的左叶上的得分；2. 新的右叶上的得分；3.原始叶子上的得分；4.附加叶子上的正则化</p>
+</li>
+<li><p>这同时也起到了“剪枝”的作用——如果分数小于$\gamma$，则不会增加分支</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="XGBoost的一些内部优化"><a href="#XGBoost的一些内部优化" class="headerlink" title="XGBoost的一些内部优化"></a>XGBoost的一些内部优化</h3><ul>
+<li>在寻找最佳分割点时，传统的方法会枚举每个特征的所有可能切分点。XGBoost实现了一种近似的算法，大致的思想是根据百分位法列举几个可能成为分割点的候选者，然后从候选者中根据上面求分割点的公式找出最佳的分割点</li>
+<li>XGBoost考虑了训练数据为稀疏值的情况，可以为缺失值或者指定的值指定分支的默认方向，这能大大提升算法的效率（50倍）</li>
+<li><strong>特征列</strong>排序后以块的形式存储在内存中，在迭代中可以重复使用；虽然Boosting算法迭代必须串行，但是在处理每个特征列时可以做到并行</li>
+<li>按照<strong>特征列</strong>方式存储能优化寻找最佳的分割点，但是当以<strong>每行每行计算梯度</strong>时会导致内存的不连续访问，严重时会导致缓存消失，降低算法效率。论文中提到，可先将数据收集到线程内部的buffer，然后再计算，提高算法的效率</li>
+<li>XGBoost还考虑了数据量比较大的情况，当内存不够时怎么有效的使用磁盘，主要是结合多线程、数据压缩、分片的方法，尽可能提高算法的效率</li>
+</ul>
+<h2 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h2><ul>
+<li>随机森林是Bagging的一个拓展变体。RF在以决策树为基学习器构建Bagging集成的基础上，进一步的在决策树的训练过程中引入了随机属性选择</li>
+<li>传统决策树选择当前结点的最优属性为划分属性；而随机森林对基决策树的每个结点，先从该结点的属性集合中随机选择一个包含k个属性的子集，然后再从这个子集中选择一个最优属性用户划分</li>
+<li>一般情况下，k推荐为$\log_2(d)$，d为结点总属性个数</li>
+<li>随机森林可用于特征选择，因为可以从选择的最优属性统计每个属性的影响程度。（所有基于数模型的集成方法，如GBDT与XGBoost都可以用于特征选择）</li>
+</ul>
+<h2 id="隐马尔科夫模型"><a href="#隐马尔科夫模型" class="headerlink" title="隐马尔科夫模型"></a>隐马尔科夫模型</h2><ul>
+<li>隐马尔科夫模型（HMM）是<strong>统计学习模型</strong>，描述由隐藏的马尔科夫链随机生成观测序列的过程，属于生成模型</li>
+</ul>
+
+</div>
+
+
+      </div>
+      
+  	</div>
+
+    <!-- After footer scripts -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
+<footer id="footer" class="footer">
+  <div class="footer-inner"> 
+
+  <div class="copyright">
+    ©  2018 -- 2023    Young&Echo
+  </div>
+
+  <div class="powered-by">
+    Hosted by <a href="https://pages.coding.me">Coding Pages</a>
+  </div>
+
+  <div class="powered-by">
+    Powered By <a class="theme-link" href="http://hexo.io">Hexo</a>
+  </div>
+
+  <div class="powered-by">
+    主题 - <a class="theme-link" href="https://github.com/sharvaridesai/hexo-theme-edinburgh">Edinburgh</a>  
+  </div>
+
+  <div class="reviewer">
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    您是本站第<span id="busuanzi_value_site_uv" class="counter"><i class="fa fa-spinner fa-spin"></i></span>位访问者
+  </div>
+
+  <!-- 不蒜子 -->
+  <script async="" src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <!-- 不蒜子计数初始值纠正 -->
+  <script>
+      $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(100000);
+       function fixCount() {
+         if ($("#busuanzi_container_site_pv").css("display") != "none") {
+              clearInterval(int);
+              $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+         }
+     }
+    });
+  </script>
+
+  <script src="/js/google-code-prettify/prettify.js"></script>
+  <script type='text/javascript'>
+		//代码高亮
+		$(document).ready(function(){
+	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+   			prettyPrint();
+		});
+  </script>
+
+
+ </div>
+    </footer><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  </body>
+</html>

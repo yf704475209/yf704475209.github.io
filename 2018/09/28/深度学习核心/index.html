@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Head tag -->
+  <head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title -->
+  
+  <title>深度学习核心 - 一蓑烟雨</title>
+
+  <!--Favicon-->
+  <link rel="icon" href="/favicon/favicon.ico">
+
+  <!--Description-->
+  
+      <meta name="description" content="我们的小博客">
+  
+
+  <!--Author-->
+  
+      <meta name="author" content="Young&amp;Echo">
+  
+
+  <!-- Pure CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Open+Sans:300,800" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+   
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Analytics -->
+  
+
+  
+  <link rel="stylesheet" href="/js/google-code-prettify/github-v2.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+
+  <body>
+  	<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container-fluid navbar-container m-sm-5">
+      <!-- Header -->
+      <nav class="navbar navbar-toggleable-sm navbar-light px-1 py-3 my-3 mb-sm-5">
+  <a class="navbar-brand ml-2" href="/">一蓑烟雨</a>
+  <button class="navbar-toggler navbar-toggler-right py-2" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse text-center" id="navbarCollapse">
+    <ul class="navbar-nav ml-auto my-auto">
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/">首页</a>
+        </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/about">关于</a>
+        </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">联系</a>
+        </li>
+      
+    </ul>
+    <hr class="hidden-md-up" />
+  </div>
+</nav>
+
+
+  		<div class="row">
+  			<div class="col-12 mb-4">
+  <img class="img-fluid project-img" src="/images/unsplash3.jpg" alt="深度学习核心">
+</div>
+<div class="col-lg-3 col-12 pt-3 px-4 pr-lg-5">
+  <h1>深度学习核心</h1>
+  
+	<p class="fixed" id="show-toc-btn" onclick="showToc();" style="display:none">
+        <strong class="toc-title-close">显示目录</strong>
+    </p>
+	
+	
+    <div id="toc-article" class="fixed">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+            <strong class="toc-title-open">目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#神经网络的运行机制"><span class="toc-text">神经网络的运行机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#深度学习的本质"><span class="toc-text">深度学习的本质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#权重与偏置的实际意义"><span class="toc-text">权重与偏置的实际意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#机器“学习”的实质"><span class="toc-text">机器“学习”的实质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非线性激活函数"><span class="toc-text">非线性激活函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#神经网络本质上是一个函数"><span class="toc-text">神经网络本质上是一个函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么要使用非线性激活函数？"><span class="toc-text">为什么要使用非线性激活函数？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么加入非线性因素能够加强网络的表示能力？"><span class="toc-text">为什么加入非线性因素能够加强网络的表示能力？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#万能近似定理"><span class="toc-text">万能近似定理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线性修正单元"><span class="toc-text">线性修正单元</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sigmoid的问题"><span class="toc-text">sigmoid的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线性修正单元ReLU"><span class="toc-text">线性修正单元ReLU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修正线性单元的优势"><span class="toc-text">修正线性单元的优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#劣势"><span class="toc-text">劣势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拓展"><span class="toc-text">拓展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#梯度下降法"><span class="toc-text">梯度下降法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#神经网络是怎样学习的？"><span class="toc-text">神经网络是怎样学习的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#损失函数"><span class="toc-text">损失函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#神经网络与损失函数的关系"><span class="toc-text">神经网络与损失函数的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降法描述"><span class="toc-text">梯度下降法描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降法与反向传播"><span class="toc-text">梯度下降法与反向传播</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#损失函数的平滑性"><span class="toc-text">损失函数的平滑性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#随机梯度下降"><span class="toc-text">随机梯度下降</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#批大小的影响"><span class="toc-text">批大小的影响</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#神经网络的优化难题"><span class="toc-text">神经网络的优化难题</span></a></li></ol>
+    </div>
+	
+    <script type="text/javascript">
+        function showToc(){
+            var toc_article = document.getElementById("toc-article");
+            var show_toc_btn = document.getElementById("show-toc-btn");
+            toc_article.setAttribute("style","display:block");
+            show_toc_btn.setAttribute("style","display:none");
+            };
+        function showBtn(){
+            var toc_article = document.getElementById("toc-article");
+            var show_toc_btn = document.getElementById("show-toc-btn");
+            toc_article.setAttribute("style","display:none");
+            show_toc_btn.setAttribute("style","display:block");
+            };
+    </script>
+
+ 
+</div>
+<div class="col-lg-9 col-12 pt-lg-3 mb-4 pl-lg-5 px-lg-0 px-4 portfolio-content">
+  <h2 id="神经网络的运行机制"><a href="#神经网络的运行机制" class="headerlink" title="神经网络的运行机制"></a>神经网络的运行机制</h2><ul>
+<li>神经网络在运行时，隐藏层可以视为一个“黑箱”</li>
+<li>每一层的激活值将通过某种方式计算出下一层的激活值—神经网络处理信息的<strong>核心机制</strong></li>
+<li>每个神经元可以看作是一个函数，其输入是上一层所有单元的输出，然后输出一个激活值</li>
+</ul>
+<p>&nbsp;</p>
+<h2 id="深度学习的本质"><a href="#深度学习的本质" class="headerlink" title="深度学习的本质"></a>深度学习的本质</h2><ul>
+<li>深度学习的本质是<strong>通过组合简单的概念来表达复杂的事物</strong></li>
+<li>神经网络是不是这么做的不能准确判断，但是实验表明：神经网络确实在做类似的工作</li>
+</ul>
+<p>&nbsp;</p>
+<h2 id="权重与偏置的实际意义"><a href="#权重与偏置的实际意义" class="headerlink" title="权重与偏置的实际意义"></a>权重与偏置的实际意义</h2><ul>
+<li>宏观来看，权重在告诉你当前神经元应该更关注来自上一层的哪些单元；或者说权重指示了连接的强弱</li>
+<li>偏置则告诉你加权和应该多大才能使神经元的激发变得有意义；或者说当前神经元是否更容易被激活  </li>
+</ul>
+<p>&nbsp;</p>
+<h2 id="机器“学习”的实质"><a href="#机器“学习”的实质" class="headerlink" title="机器“学习”的实质"></a>机器“学习”的实质</h2><ul>
+<li>当我们在讨论机器如何“学习”时，实际上指的是机器如何正确设置这些参数</li>
+</ul>
+<p>&nbsp;</p>
+<h2 id="非线性激活函数"><a href="#非线性激活函数" class="headerlink" title="非线性激活函数"></a>非线性激活函数</h2><h3 id="神经网络本质上是一个函数"><a href="#神经网络本质上是一个函数" class="headerlink" title="神经网络本质上是一个函数"></a>神经网络本质上是一个函数</h3><ul>
+<li>宏观来看，神经网络也是一个函数</li>
+</ul>
+<h3 id="为什么要使用非线性激活函数？"><a href="#为什么要使用非线性激活函数？" class="headerlink" title="为什么要使用非线性激活函数？"></a>为什么要使用非线性激活函数？</h3><ul>
+<li>使用非线性激活函数的目的是为了向网络中加入非线性因素，从而加强网络的表示能力</li>
+</ul>
+<h3 id="为什么加入非线性因素能够加强网络的表示能力？"><a href="#为什么加入非线性因素能够加强网络的表示能力？" class="headerlink" title="为什么加入非线性因素能够加强网络的表示能力？"></a>为什么加入非线性因素能够加强网络的表示能力？</h3><ul>
+<li>非线性函数具有比线性函数更强的表示能力</li>
+<li>如果不使用非线性激活函数，那么每一层输出都是上层输入的线性组合容易验证，此时无论有多少层，神经网络都是一个线性函数</li>
+</ul>
+<h3 id="万能近似定理"><a href="#万能近似定理" class="headerlink" title="万能近似定理"></a>万能近似定理</h3><ul>
+<li>神经网络如果具有至少一个非线性输出层，那么只要给予网络足够数量的隐藏单元，它就可以以任意的精度来近似任何从一个有限维度空间到另一个有限维度空间的函数<blockquote>
+<p>《深度学习》 6.4.1 万能近似性质和深度</p>
+</blockquote>
+</li>
+</ul>
+<p>&nbsp;</p>
+<h2 id="线性修正单元"><a href="#线性修正单元" class="headerlink" title="线性修正单元"></a>线性修正单元</h2><h3 id="sigmoid的问题"><a href="#sigmoid的问题" class="headerlink" title="sigmoid的问题"></a>sigmoid的问题</h3><ul>
+<li>sigmoid函数在输入取绝对值非常大的正值或负值时会出现饱和现象，此时函数会对输入的微小改变变得不敏感</li>
+<li>饱和现象会导致基于梯度的学习变得困难，并在传播过程中丢失信息（梯度消失）</li>
+</ul>
+<h3 id="线性修正单元ReLU"><a href="#线性修正单元ReLU" class="headerlink" title="线性修正单元ReLU"></a>线性修正单元ReLU</h3><script type="math/tex; mode=display">ReLU(a)=max(0,a)</script><ul>
+<li>ReLU取代sigmoid的主要原因是：使神经网络更容易训练（减缓梯度消失）</li>
+</ul>
+<h3 id="修正线性单元的优势"><a href="#修正线性单元的优势" class="headerlink" title="修正线性单元的优势"></a>修正线性单元的优势</h3><ul>
+<li>仿生物学原理：生物神经元的信息编码通常是比较分散以及稀疏的。sigmoid在输入为0时达到1/2，即已经是半饱和的稳定状态<blockquote>
+<p>不过需要指出的是，一般情况下，在一个使用修正线性单元的神经网络中大概有50%的神经元处于激活态</p>
+</blockquote>
+</li>
+<li>更加有效的梯度下降以及反向传播：避免了梯度爆炸和梯度消失问题<blockquote>
+<p>只要修正线性单元处于激活状态，它的导数都能保持较大。它的梯度不但大而且一致。修正操作的二阶导数几乎处处为0，并且在修正线性单元被激活时，它的导数处处为1。这意味着相比于引入二阶效应的激活函数来说，它的梯度方向对于学习来说更加有用。</p>
+</blockquote>
+</li>
+<li>简化计算过程：没有了其他复杂激活函数中诸如指数函数的影响；同时活跃度的分散性使得神经网络整体计算成本下降</li>
+</ul>
+<h3 id="劣势"><a href="#劣势" class="headerlink" title="劣势"></a>劣势</h3><ul>
+<li>不能通过基于梯度的方法学习那些使它们激活为0的样本。</li>
+</ul>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li>绝对值修正：固定负轴斜率为-1，得到了g(z) = |z|</li>
+<li>渗漏修正线性单元：固定负轴斜率为一个类似0.01的小值</li>
+<li>参数化修正线性单元：将负轴斜率作为学习的参数</li>
+<li>maxout单元：将整个坐标轴划分为几组，每组有K个值，每个maxout单元输出每组中的最大值</li>
+</ul>
+<p>&nbsp;</p>
+<h2 id="梯度下降法"><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a>梯度下降法</h2><h3 id="神经网络是怎样学习的？"><a href="#神经网络是怎样学习的？" class="headerlink" title="神经网络是怎样学习的？"></a>神经网络是怎样学习的？</h3><ul>
+<li>我们需要一种算法：通过喂给这个网络大量的<strong>训练数据</strong><br>算法会调整所有网络参数（权重和偏置）来提高网络对训练数据的表现<br>此外，我们还希望这种分层结构能够举一反三，识别训练数据之外的图像——<strong>泛化能力</strong>  </li>
+<li>虽然使用了“学习”的说法，但实际上训练的过程更像在解一道<strong>微积分问题</strong><br>训练的过程实际上在寻找某个函数的（局部）最小值  </li>
+<li>在训练开始前，这些参数是随机初始化的  <blockquote>
+<p>确实存在一些随机初始化的策略，但目前来看，都只是“锦上添花”</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><ul>
+<li>需要定义一个“损失函数”来评价整个网络在这个任务上的“槽糕程度”</li>
+<li>实际上，神经网络的学习过程，就是最小化损失函数的过程</li>
+</ul>
+<h3 id="神经网络与损失函数的关系"><a href="#神经网络与损失函数的关系" class="headerlink" title="神经网络与损失函数的关系"></a>神经网络与损失函数的关系</h3><ul>
+<li>损失函数并不是神经网络的一部分，而是训练网络时用到的工具</li>
+</ul>
+<h3 id="梯度下降法描述"><a href="#梯度下降法描述" class="headerlink" title="梯度下降法描述"></a>梯度下降法描述</h3><ol>
+<li>计算损失函数对所有参数的（负）梯度</li>
+<li>按梯度的负方向下降一定步长</li>
+<li>重复以上步骤，直到满足精度要求</li>
+</ol>
+<h3 id="梯度下降法与反向传播"><a href="#梯度下降法与反向传播" class="headerlink" title="梯度下降法与反向传播"></a>梯度下降法与反向传播</h3><ul>
+<li>梯度下降是寻找局部最小值的一种策略<br>其中最核心的部分是利用损失函数的梯度来更新所有参数  </li>
+<li>反向传播算法是求解函数梯度的一种方法<br>其本质上是利用链式法则对每个参数求偏导</li>
+</ul>
+<h3 id="损失函数的平滑性"><a href="#损失函数的平滑性" class="headerlink" title="损失函数的平滑性"></a>损失函数的平滑性</h3><ul>
+<li>为了能达到函数的局部最小值，损失函数有必要是平滑的</li>
+</ul>
+<p>&nbsp;</p>
+<h2 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h2><ul>
+<li>基本的梯度下降法要求每次使用所有训练样本的平均损失来更新参数，也称为”批量梯度下降”，但是计算效率很低</li>
+<li>一种常见的方法是每次只随机选取单个样本的损失来计算梯度，称为”随机梯度下降”，但是非常容易陷入局部最优</li>
+<li>更常见的方法是小批量梯度下降，它每次随机选取一批样本，然后基于他们的平均损失来更新参数</li>
+</ul>
+<h3 id="批大小的影响"><a href="#批大小的影响" class="headerlink" title="批大小的影响"></a>批大小的影响</h3><ul>
+<li><strong>较大的批能得到更精确的梯度估计</strong>，但回报是小于线性的。</li>
+<li><strong>较小的批能带来更好的泛化误差</strong>，泛化误差通常在批大小为 1 时最好。但是，因为梯度估计的高方差，小批量训练需要<strong>较小的学习率</strong>以保持稳定性，这意味着<strong>更长的训练时间</strong>。<blockquote>
+<p>原因可能是由于小批量在学习过程中加入了噪声，它们会有一些正则化效果 (Wilson and Martinez, 2003)</p>
+</blockquote>
+</li>
+<li><strong>内存消耗和批的大小成正比</strong>，当批量处理中的所有样本可以并行处理时。</li>
+<li>在某些硬件上使用特定大小可以减少运行时间。尤其是在使用 GPU 时，通常使用 <strong>2 的幂数</strong>作为批量大小可以获得更少的运行时间。一般，2 的幂数的<strong>取值范围是 32 到 256</strong>，16 有时在尝试大模型时使用。</li>
+</ul>
+<p>&nbsp;</p>
+<h2 id="神经网络的优化难题"><a href="#神经网络的优化难题" class="headerlink" title="神经网络的优化难题"></a><strong>神经网络的优化难题</strong></h2><ul>
+<li>有一个策略可以保证最终解<strong>至少</strong>能到达一个局部极小值点：使每次<strong>移动的步幅和斜率成正比</strong>；<br>因为在最小值附近的斜率会趋于平缓，这将导致每次移动步幅越来越小，防止跳出极值点<br>  <strong>但是</strong>，这对于现代各种巨大的神经网络而言，是一个<strong>负优化策略</strong>——它反而会<strong>限制网络的学习</strong>，导致其陷入某个局部极小值点</li>
+<li>当参数数量非常庞大时，可能存在<strong>无数个极值点</strong>，而其中某些极值点的结果可能非常差。  <blockquote>
+<p>优化问题是深度学习最核心的两个问题之一，另一个是正则化</p>
+</blockquote>
+</li>
+<li>也不要太过担心因为局部最小值点太多而无法优化；<br>  事实上，只要你使用的数据不是完全随机，或者说有一定结构，那么最终网络倾向收敛到的各个局部最小值点，实际上都差不多<br>  你可以认为如果数据集已经<strong>结构化</strong>了，那么你可以更轻松的找到局部最小值点</li>
+</ul>
+
+</div>
+
+
+      </div>
+      
+  	</div>
+
+    <!-- After footer scripts -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
+<footer id="footer" class="footer">
+  <div class="footer-inner"> 
+
+  <div class="copyright">
+    ©  2018 -- 2023    Young&Echo
+  </div>
+
+  <div class="powered-by">
+    Hosted by <a href="https://pages.coding.me">Coding Pages</a>
+  </div>
+
+  <div class="powered-by">
+    Powered By <a class="theme-link" href="http://hexo.io">Hexo</a>
+  </div>
+
+  <div class="powered-by">
+    主题 - <a class="theme-link" href="https://github.com/sharvaridesai/hexo-theme-edinburgh">Edinburgh</a>  
+  </div>
+
+  <div class="reviewer">
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    您是本站第<span id="busuanzi_value_site_uv" class="counter"><i class="fa fa-spinner fa-spin"></i></span>位访问者
+  </div>
+
+  <!-- 不蒜子 -->
+  <script async="" src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <!-- 不蒜子计数初始值纠正 -->
+  <script>
+      $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(100000);
+       function fixCount() {
+         if ($("#busuanzi_container_site_pv").css("display") != "none") {
+              clearInterval(int);
+              $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+         }
+     }
+    });
+  </script>
+
+  <script src="/js/google-code-prettify/prettify.js"></script>
+  <script type='text/javascript'>
+		//代码高亮
+		$(document).ready(function(){
+	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+   			prettyPrint();
+		});
+  </script>
+
+
+ </div>
+    </footer><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  </body>
+</html>

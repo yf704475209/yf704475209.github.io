@@ -231,7 +231,7 @@
 <li><p>逻辑回归的并行化最主要的就是对目标函数梯度计算的并行化</p>
 <ol>
 <li><p>数据分割</p>
-<p> <img src="/2018/09/29/机器学习算法总结/1.png" alt=""></p>
+<p> <img src="/机器学习算法总结/1.png" alt=""></p>
 </li>
 <li><p>并行计算</p>
 <ol>
@@ -240,14 +240,14 @@
 <script type="math/tex; mode=display">d_{(r,c),k,t}</script><p> 表示第t次迭代中节点(r,c)上的第k个特征向量与特征权重分量的点乘，$W_{c,t}$为第t次迭代中特征权重向量在第c列节点上的分量</p>
 </li>
 <li><p>对行号相同的节点归并点乘结果</p>
-<script type="math/tex; mode=display">d_{r,k,t}=W_t^TX_{r,k}=\sum_{c=1}^nd_{(r,c),k,t}=\sum_{c=1}^nW_{c,t}^TX_{(r,c),k} \in \mathrm{R}</script><p> 计算得到的点乘结果需要返回到该行所有计算节点中，如图所示<br> <img src="/2018/09/29/机器学习算法总结/2.png" alt=""></p>
+<script type="math/tex; mode=display">d_{r,k,t}=W_t^TX_{r,k}=\sum_{c=1}^nd_{(r,c),k,t}=\sum_{c=1}^nW_{c,t}^TX_{(r,c),k} \in \mathrm{R}</script><p> 计算得到的点乘结果需要返回到该行所有计算节点中，如图所示<br> <img src="/机器学习算法总结/2.png" alt=""></p>
 </li>
 <li><p>各节点独立算标量与特征向量相乘</p>
 <script type="math/tex; mode=display">G_{(r,c),t}=\sum_{k=1}^{M/m}[\sigma(y_{r,k}d_{r,k,t})-1]y_{r,k}X_{(r,c),k} \in \mathrm{R^{N/n}}</script><p> $G_{(r,c),t}$可以理解为由第r行节点上部分样本计算出的目标函数梯度向量在第c列节点上的分量</p>
 </li>
 <li><p>对列号相同的节点进行归并</p>
 <script type="math/tex; mode=display">G_{c,t}=\sum_{r=1}^mG_{(r,c),t} \in \mathrm{R^{N/n}}</script><p> $G_{c,t}$就是目标函数的梯度向量$G_t$在第c列节点上的分量，对其进行归并得到目标函数的梯度向量</p>
-<script type="math/tex; mode=display">G_t=<G_{1,t},...,G_{c,t},...,G_{n,t}> \in \mathrm{R^N}</script><p> 这个过程如图所示<br> <img src="/2018/09/29/机器学习算法总结/3.png" alt=""></p>
+<script type="math/tex; mode=display">G_t=<G_{1,t},...,G_{c,t},...,G_{n,t}> \in \mathrm{R^N}</script><p> 这个过程如图所示<br> <img src="/机器学习算法总结/3.png" alt=""></p>
 </li>
 </ol>
 </li>
@@ -320,7 +320,7 @@
 <script type="math/tex; mode=display">(w^*,b^*) \ne (0,0)</script><p>  是1的一个解，则存在$\alpha$使得</p>
 <script type="math/tex; mode=display">(\alpha w^*, \alpha b^*)</script><p>  是2的一个解。所以1和2在优化问题上讲基本上是等价的。1就是感知机对应的优化问题，SVM (soft margin) 对应的优化问题是</p>
 <script type="math/tex; mode=display">\underset{w,b}{min}\frac{1}{n}\sum_{i=1}^nmax(0, 1-y_i(w\cdot x_i + b))+\lambda ||w||^2_2</script></li>
-<li><p>SVM与感知机的差别在于感知机追求最大程度正确划分，最小化错误，效果类似紫线，容易过拟合；SVM追求在大致正确分类的同时，最大化间隔，一定程度上避免了过拟合，效果类似黑线<br>  <img src="/2018/09/29/机器学习算法总结/4.png" alt=""></p>
+<li><p>SVM与感知机的差别在于感知机追求最大程度正确划分，最小化错误，效果类似紫线，容易过拟合；SVM追求在大致正确分类的同时，最大化间隔，一定程度上避免了过拟合，效果类似黑线<br>  <img src="/机器学习算法总结/4.png" alt=""></p>
 </li>
 </ul>
 </li>

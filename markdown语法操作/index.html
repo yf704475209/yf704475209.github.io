@@ -249,20 +249,20 @@ x \href{why-equal.html}{=} y^2 + 1</script><p>同时也支持 HTML 属性，如�
   </div>
 
   <div class="reviewer">
-    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
     您是本站第<span id="busuanzi_value_site_uv" class="counter"><i class="fa fa-spinner fa-spin"></i></span>位访问者
   </div>
 
   <!-- 不蒜子 -->
-  <script async="" src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <!-- 不蒜子计数初始值纠正 -->
   <script>
       $(document).ready(function() {
         var int = setInterval(fixCount, 100);
         var busuanziSiteOffset = parseInt(100000);
        function fixCount() {
-         if ($("#busuanzi_container_site_pv").css("display") != "none") {
+         if ($("#busuanzi_container_site_uv").css("display") != "none") {
               clearInterval(int);
               $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
          }

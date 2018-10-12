@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Head tag -->
+  <head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title -->
+  
+  <title>机器学习常见问答题 - 一蓑烟雨</title>
+
+  <!--Favicon-->
+  <link rel="icon" href="/favicon/suo.ico">
+
+  <!--Description-->
+  
+      <meta name="description" content="我们的小博客">
+  
+
+  <!--Author-->
+  
+      <meta name="author" content="Young&amp;Echo">
+  
+
+  <!-- Pure CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Open+Sans:300,800" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+   
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Analytics -->
+  
+
+  
+  <link rel="stylesheet" href="/js/google-code-prettify/github-v2.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+
+  <body>
+  	<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container-fluid navbar-container m-sm-5">
+      <!-- Header -->
+      <nav class="navbar navbar-toggleable-sm navbar-light px-1 py-3 my-3 mb-sm-5">
+  <a class="navbar-brand ml-2" href="/">一蓑烟雨</a>
+  <button class="navbar-toggler navbar-toggler-right py-2" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse text-center" id="navbarCollapse">
+    <ul class="navbar-nav ml-auto my-auto">
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/">首页</a>
+        </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/about">关于</a>
+        </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">联系</a>
+        </li>
+      
+    </ul>
+    <hr class="hidden-md-up" />
+  </div>
+</nav>
+
+
+  		<div class="row">
+  			<div class="col-12 mb-4">
+  <img class="img-fluid project-img" src="/images/unsplash5.jpg" alt="机器学习常见问答题">
+</div>
+<div class="col-lg-3 col-12 pt-3 px-4 pr-lg-5">
+  <h1>机器学习常见问答题</h1>
+  
+	<p class="fixed" id="show-toc-btn" onclick="showToc();" style="display:none">
+        <strong class="toc-title-close">显示目录</strong>
+    </p>
+	
+	
+    <div id="toc-article" class="fixed">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+            <strong class="toc-title-open">目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#逻辑回归"><span class="toc-text">逻辑回归</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#讲一下LR及优缺点"><span class="toc-text">讲一下LR及优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR损失函数推导"><span class="toc-text">LR损失函数推导</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR的优化方法及区别，梯度下降有哪几种？"><span class="toc-text">LR的优化方法及区别，梯度下降有哪几种？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR的思想是什么，对输入输出的分布假设是什么？"><span class="toc-text">LR的思想是什么，对输入输出的分布假设是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR可以处理非线性问题吗？怎么做？像SVM那样么？为什么"><span class="toc-text">LR可以处理非线性问题吗？怎么做？像SVM那样么？为什么?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR为什么采用似然估计，而不用平方损失和绝对值损失？"><span class="toc-text">LR为什么采用似然估计，而不用平方损失和绝对值损失？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR如何做并行化？"><span class="toc-text">LR如何做并行化？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#支持向量机"><span class="toc-text">支持向量机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍一下SVM"><span class="toc-text">介绍一下SVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVM推导软间隔问题"><span class="toc-text">SVM推导软间隔问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原始问题与对偶问题的关系，为什么要转换成对偶问题？KKT条件是什么？"><span class="toc-text">原始问题与对偶问题的关系，为什么要转换成对偶问题？KKT条件是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要除以-w-，为什么gamma-可以取1？"><span class="toc-text">为什么要除以||w||，为什么gamma^可以取1？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核函数的概念，为什么用核函数，有哪些核，如何选择？"><span class="toc-text">核函数的概念，为什么用核函数，有哪些核，如何选择？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么引入拉格朗日方法？"><span class="toc-text">为什么引入拉格朗日方法？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVM如何处理多分类问题？"><span class="toc-text">SVM如何处理多分类问题？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVM与LR异同"><span class="toc-text">SVM与LR异同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVM与感知机的联系与区别"><span class="toc-text">SVM与感知机的联系与区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVM优缺点"><span class="toc-text">SVM优缺点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#集成学习"><span class="toc-text">集成学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#讲讲决策树算法"><span class="toc-text">讲讲决策树算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是熵？信息熵的公式"><span class="toc-text">什么是熵？信息熵的公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#信息增益公式及意义"><span class="toc-text">信息增益公式及意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#决策树如何处理连续值"><span class="toc-text">决策树如何处理连续值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何判断决策树和随机森林过拟合"><span class="toc-text">如何判断决策树和随机森林过拟合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#决策树三种模型区别和使用场景"><span class="toc-text">决策树三种模型区别和使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#随机森林算法及优缺点"><span class="toc-text">随机森林算法及优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#随机森林损失函数"><span class="toc-text">随机森林损失函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#随机森林怎么得到最终结果"><span class="toc-text">随机森林怎么得到最终结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#随机森林防止过拟合的方法"><span class="toc-text">随机森林防止过拟合的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#谈谈Boosting"><span class="toc-text">谈谈Boosting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GBDT分裂的条件，如何并行化？"><span class="toc-text">GBDT分裂的条件，如何并行化？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GBDT的Boosting体现在哪？"><span class="toc-text">GBDT的Boosting体现在哪？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XGBoost原理及目标函数"><span class="toc-text">XGBoost原理及目标函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XGBoost常用参数"><span class="toc-text">XGBoost常用参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XGBoost对缺失值敏感吗？做了什么操作？"><span class="toc-text">XGBoost对缺失值敏感吗？做了什么操作？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GBDT与XGBoost的区别"><span class="toc-text">GBDT与XGBoost的区别</span></a></li></ol></li></ol>
+    </div>
+	
+    <script type="text/javascript">
+        function showToc(){
+            var toc_article = document.getElementById("toc-article");
+            var show_toc_btn = document.getElementById("show-toc-btn");
+            toc_article.setAttribute("style","display:block");
+            show_toc_btn.setAttribute("style","display:none");
+            };
+        function showBtn(){
+            var toc_article = document.getElementById("toc-article");
+            var show_toc_btn = document.getElementById("show-toc-btn");
+            toc_article.setAttribute("style","display:none");
+            show_toc_btn.setAttribute("style","display:block");
+            };
+    </script>
+
+ 
+</div>
+<div class="col-lg-9 col-12 pt-lg-3 mb-4 pl-lg-5 px-lg-0 px-4 portfolio-content">
+  <h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><h2 id="讲一下LR及优缺点"><a href="#讲一下LR及优缺点" class="headerlink" title="讲一下LR及优缺点"></a>讲一下LR及优缺点</h2><p>LR是一种条件概率分布模型，它实际上是将线性回归的输出通过sigmoid函数作了非线性变换，这个变换也可以通过对数几率函数得到，因此LR与最大熵模型一样是一种对数回归模型。模型学习一般采用极大似然估计的方法，求解最优化问题一般采用梯度下降法。</p>
+<p>优点：计算简单、效果良好、容易做并行计算</p>
+<p>缺点：容易过拟合、对离群点敏感、对非线性数据拟合不好，需要人工做交叉特征</p>
+<h2 id="LR损失函数推导"><a href="#LR损失函数推导" class="headerlink" title="LR损失函数推导"></a>LR损失函数推导</h2><script type="math/tex; mode=display">P(Y=1|X)=\sigma(x)\quad P(Y=0|X)=1-\sigma(x)</script><p>似然函数：</p>
+<script type="math/tex; mode=display">\underset{i=1}\prod^{N}[\sigma(x_i)]^{y_i}[1-\sigma(x_i)]^{1-y_i}</script><p>负对数似然函数：</p>
+<script type="math/tex; mode=display">\begin{aligned} L(w) & =-\underset{i=1}\sum^N[y_ilog\sigma(x_i) + (1-y_i)log(1-\sigma(x_i)] \\ & = -\underset{i=1}\sum^N[y_ilog\frac{\sigma(x_i)}{1-\sigma(x_i)} + log(1-\sigma(x_i)] \\ & = -\underset{i=1}\sum^N[y_i(wx_i) - log(1+e^{wx_i})]\end{aligned}</script><h2 id="LR的优化方法及区别，梯度下降有哪几种？"><a href="#LR的优化方法及区别，梯度下降有哪几种？" class="headerlink" title="LR的优化方法及区别，梯度下降有哪几种？"></a>LR的优化方法及区别，梯度下降有哪几种？</h2><p>梯度下降法：每一步求解目标函数的梯度向量，将参数沿着负梯度的方向更新。</p>
+<p>牛顿法：将目标函数在x处作二阶泰勒展开</p>
+<script type="math/tex; mode=display">\begin{aligned} & \because f(x)=f(x_k)+g_k^T(x-x_k)+\frac{1}{2}(x-x_k)^TH_k(x-x_k) \\ & \therefore\nabla f(x)=f^{'}(x)=g_k+H_k(x-x_k) \\& let \quad x=x_{k+1} \\ & \because \nabla f(x_{k+1})=0 \\ & \therefore g_k+H_k(x_{k+1}-x_k)=0 \\ & \ \ \implies x_{k+1} = x_k-H_k^{-1}g_k\end{aligned}</script><p>以上为牛顿法的参数更新方法</p>
+<p>区别：梯度下降法是用一阶泰勒展开，牛顿法是用二阶泰勒展开，牛顿法收敛更快但是计算更复杂，需要计算海塞矩阵的逆矩阵，可用拟牛顿法代替。拟牛顿法包括DPF，BFGS，LBFGS等。</p>
+<p>梯度下降法有批梯度下降法（每次针对整个数据集求解梯度），mini-batch梯度下降法（只在一个子数据集上进行求解梯度），随机梯度下降法（只在一个数据上求解梯度）。</p>
+<h2 id="LR的思想是什么，对输入输出的分布假设是什么？"><a href="#LR的思想是什么，对输入输出的分布假设是什么？" class="headerlink" title="LR的思想是什么，对输入输出的分布假设是什么？"></a>LR的思想是什么，对输入输出的分布假设是什么？</h2><p>LR是比较两个条件概率值的大小，将实例分到概率值较大的那一类，但是LR中采用对数几率表示概率，即发生概率P与不发生概率1-P的商的对数。</p>
+<p>输入的标签是0-1分布（伯努利分布），输出是对数几率分布</p>
+<h2 id="LR可以处理非线性问题吗？怎么做？像SVM那样么？为什么"><a href="#LR可以处理非线性问题吗？怎么做？像SVM那样么？为什么" class="headerlink" title="LR可以处理非线性问题吗？怎么做？像SVM那样么？为什么?"></a>LR可以处理非线性问题吗？怎么做？像SVM那样么？为什么?</h2><p>可以，普通的LR虽然对线性回归的输出做了非线性变换，但是并不擅长处理非线性问题，即输入是完全非线性的问题，此时LR的拟合效果很差。但是可以通过使用核技巧，将数据做映射到高维空间，使其在高维空间呈现出线性关系：</p>
+<script type="math/tex; mode=display">wx+b \ \implies \ \sum_ia_i<x_i, x>+b</script><p>另外还可以做组合特征。</p>
+<p>与SVM类型，但是SVM是稀疏的，只有支持向量的$a_i$不为0，因此储存较少，但LR每个$x_i$及$a_i$都需要储存。</p>
+<p>SVM本质上是一种线性分类器，是通过核技巧才成为实质上的非线性分类器的。</p>
+<h2 id="LR为什么采用似然估计，而不用平方损失和绝对值损失？"><a href="#LR为什么采用似然估计，而不用平方损失和绝对值损失？" class="headerlink" title="LR为什么采用似然估计，而不用平方损失和绝对值损失？"></a>LR为什么采用似然估计，而不用平方损失和绝对值损失？</h2><p>因为对数似然函数有一些良好的性质。首先对数似然函数是凸函数，容易求解出最优解；其次，对数似然函数是一个高阶可导函数，在LR中关于参数的导数为：</p>
+<script type="math/tex; mode=display">\frac{\partial L}{\partial\theta_i}=-\sum_i(y_i-\sigma(x_i))x_{i}</script><p>而平方损失不是一个凸函数，容易得到局部最优解，且平方损失在LR中关于参数的导数为：</p>
+<script type="math/tex; mode=display">\frac{\partial L}{\partial\theta_i}=-\sum_i(y_i-\sigma(x_i))\sigma'(x_i)</script><p>其中$\sigma(x_i)$在sigmoid函数中容易出现梯度消失的问题。</p>
+<h2 id="LR如何做并行化？"><a href="#LR如何做并行化？" class="headerlink" title="LR如何做并行化？"></a>LR如何做并行化？</h2><p>LR的并行化主要是对目标函数梯度计算的并行化。</p>
+<p>目标函数的梯度：</p>
+<script type="math/tex; mode=display">\frac{\partial L(w)}{\partial w}=-\sum_{i=1}^N(y_i-\frac{1}{1+e^{-wx_i}})x_{i}</script><p>可以看出，只需计算向量间的点乘$wx_i$和标量乘向量$x_i$。因此可以将计算分为两个并行化步骤和结果归并步骤。</p>
+<p>假设所有计算节点排列成m行n列（m*n个计算节点），按行将样本进行划分，每个计算节点分配M/m个样本特征向量和分类标签；按列对特征向量进行切分，每个节点上的特征向量分配N/n维特征。如下图所示，同一样本的特征对应节点的行号相同，不同样本相同维度的特征对应节点的列号相同。</p>
+<ol>
+<li><p>数据分割：</p>
+<p> <img src="/机器学习常见问答题/Untitled-92168207-f962-499d-96fc-b8d06a099ffd.png" alt=""></p>
+<p> 一个样本的特征向量被拆分到同一行不同列的节点中，即：</p>
+<script type="math/tex; mode=display">X_{r,k}=<X_{(r,1),k},...,X_{(r,c),k},...,X_{(r,n),k}></script><p> 其中，$X_{r,k}$表示第r行的第k个向量，$X_{(r,c),k}$表示$X_{r,k}$在第c列节点上的分量。同样的，用$W_c$表示特征向量W在第c列节点上的分量，即：</p>
+<script type="math/tex; mode=display">W=<W_1,...,W_c,...,W_n></script></li>
+<li><p>并行计算</p>
+<ol>
+<li><p>各节点并行计算点乘，计算：</p>
+<script type="math/tex; mode=display">d_{(r,c),k,t}=W^T_{c,t}X_{(r,c),k}</script><p> 其中，k=1,2,..,M/m。$d_{(r,c),k,t}$表示第t次迭代中节点(r,c)上的第k个特征向量与特征权重分量的点乘，$w_{c,t}$为第t次迭代中特征权重向量在第c列节点上的分量。</p>
+</li>
+<li><p>对行号相同的节点归并点乘结果：</p>
+<script type="math/tex; mode=display">d_{r,k,t}=W^T_tX_{r,k}=\sum_{c=1}^nd_{(r,c),k,t}=\sum_{c=1}^nW^T_cX_{(r,c),k}</script><p> 计算得到的点乘结果需要返回到该行所有计算节点中，如图：</p>
+<p> <img src="/机器学习常见问答题/Untitled-4ee13cb2-77ae-48d2-97a4-b4bb512db2a5.png" alt=""></p>
+</li>
+<li><p>各节点独立计算标量与特征向量的相乘：</p>
+<script type="math/tex; mode=display">G_{(r,c),t}=\sum_{k=1}^{M/m}(y_{r,k}-\sigma(d_{r,k,t}))X_{(r,c),k}</script><p> $G_{(r,c),t}$可以理解为有第r行节点上部分样本计算出的目标函数梯度向量在第c列节点上的分量：</p>
+</li>
+<li><p>对列号相同的节点进行归并：</p>
+<script type="math/tex; mode=display">G_{c,t}=\sum_{r=1}^mG_{(r,c),t}</script><p> $G_{c,t}$就是目标函数的梯度向量$G_t$在第c列节点上的分量，对其进行归并得到目标函数的梯度向量：</p>
+<script type="math/tex; mode=display">G_t=<G_{1,t},...,G_{c,t},...,G_{n,t}></script><p> 过程如图所示：</p>
+<p> <img src="/机器学习常见问答题/Untitled-3faf4dc4-c78f-4c87-9b28-cb1c695c71bc.png" alt=""></p>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h1><h2 id="介绍一下SVM"><a href="#介绍一下SVM" class="headerlink" title="介绍一下SVM"></a>介绍一下SVM</h2><p>SVM是一种二分类模型，它的基本模型是定义在特征空间上的间隔最大的线性分类器。间隔最大让它不用于感知机，SVM还包括核技巧，这使它成为实质上的非线性分类器。SVM的学习策略是间隔最大化，可形式化为一个求解凸二次规划问题，也等价于正则化的合页损失函数最小化问题。</p>
+<p>SVM由简至繁可分为线性可分SVM，线性SVM，非线性SVM。线性可分SVM是求解硬间隔最大化，线性SVM是求解软间隔最大化，非线性SVM是通过核技巧将数据映射到高维空间后求解软间隔最大化。</p>
+<h2 id="SVM推导软间隔问题"><a href="#SVM推导软间隔问题" class="headerlink" title="SVM推导软间隔问题"></a>SVM推导软间隔问题</h2><p>决策函数：</p>
+<script type="math/tex; mode=display">f(x)=sign(wx+b)</script><p>函数间隔：</p>
+<script type="math/tex; mode=display">\hat \gamma = \underset{i} {min} \ y_i(wx_i+b)=\underset{i} {min} \ \hat \gamma_i</script><p>几何间隔：</p>
+<script type="math/tex; mode=display">\gamma=\underset{i} {min} \ y_i(\frac{w}{||w||}x_i+\frac{b}{||w||})=\underset{i} {min} \ \frac{\hat \gamma_i}{||w||}</script><p>模型定义：</p>
+<script type="math/tex; mode=display">\begin{aligned}\underset{w,b} {max} \ \gamma+c\sum_i \xi_i\\ \Rightarrow\underset{w,b} {max} \ \frac{\hat\gamma}{||w||}+c\sum_i \xi_i \\ \Rightarrow \underset{w,b} {min}\frac{\hat \gamma}{2}||w||^2 +c\sum_i\xi_i \\ \mathrm{s.t.} \ \sum_iy_i(wx_i+b)\ge \hat\gamma -\xi_i, \ \xi_i\ge 0\end{aligned}</script><p>令</p>
+<script type="math/tex; mode=display">\hat\gamma=1</script><p>得：</p>
+<script type="math/tex; mode=display">\begin{aligned}\underset{w,b} {min}\frac{1}{2}||w||^2 +c\sum_i\xi_i \\ \mathrm{s.t.} \ \sum_iy_i(wx_i+b)\ge 1 -\xi_i, \ \xi_i\ge 0\end{aligned}</script><p>拉格朗日乘子法：</p>
+<script type="math/tex; mode=display">L(w,b,\xi,\alpha,\mu)=\frac{1}{2}||w||^2+c\sum_i\xi_i-\sum_i\alpha_i[y_i(wx_i+b)-1+\xi_i]-\sum_i\mu_i\xi_i</script><p>原始问题：</p>
+<script type="math/tex; mode=display">\underset{w,b,\xi}{min}\underset{\alpha,\mu}{max}L(w,b,\xi,\alpha,\mu)</script><p>对偶问题：</p>
+<script type="math/tex; mode=display">\underset{\alpha,\mu}{max}\underset{w,b,\xi}{min}L(w,b,\xi,\alpha,\mu)</script><p>满足KKT条件，转换为求解对偶问题。令</p>
+<script type="math/tex; mode=display">\Psi(w,b,\xi,\alpha,\mu)=\underset{w,b,\xi}{min}L(w,b,\xi,\alpha,mu)</script><p>对w,b,xi求偏导令其等于0，可得：</p>
+<script type="math/tex; mode=display">\begin{aligned} \frac{\partial L}{\partial w}=0 \ \Rightarrow \ w=\sum_i\alpha_i y_i x_i     \end{aligned}</script><script type="math/tex; mode=display">\begin{aligned} \frac{\partial L}{\partial b}=0 \ \Rightarrow \ \sum_i\alpha_i y_i=0    \end{aligned}</script><script type="math/tex; mode=display">\begin{aligned} \frac{\partial L}{\partial \xi}=0 \ \Rightarrow \ c=\alpha_i +\mu_i   \end{aligned}</script><p>带入可得：</p>
+<script type="math/tex; mode=display">\begin{aligned}\underset{\alpha,\mu}{max}\Psi(\alpha,\mu) & = \underset{\alpha,\mu}{max} \sum_i\alpha_i - \frac{1}{2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j(x_i^Tx_j) \\& \mathrm{s.t.} \ \sum_i\alpha_iy_i=0 \\ & \quad \ \ \ \ 0\le\alpha_i\le c\end{aligned}</script><p>该式只有$\alpha$，可用SMO算法求解，设最优解为$\alpha^*$，则：</p>
+<script type="math/tex; mode=display">\begin{aligned}& w^*= \sum_i\alpha^*_iy_ix_i \\ & b^*=y_j-\sum_i\alpha^*_iy_i(x^T_ix_j) \\& f(x)=sign(w^*x+b^*)\end{aligned}</script><h2 id="原始问题与对偶问题的关系，为什么要转换成对偶问题？KKT条件是什么？"><a href="#原始问题与对偶问题的关系，为什么要转换成对偶问题？KKT条件是什么？" class="headerlink" title="原始问题与对偶问题的关系，为什么要转换成对偶问题？KKT条件是什么？"></a>原始问题与对偶问题的关系，为什么要转换成对偶问题？KKT条件是什么？</h2><p>原始问题的最优解为$d^*$，</p>
+<p>对偶问题的最优解为$p^*$，则有：</p>
+<script type="math/tex; mode=display">d^*\le p^*</script><p>以上为弱对偶性，当满足slater条件，即：存在严格满足约束条件的点x（即使约束条件$f(x)&lt;0$）且原始问题是凸优化问题时，满足强对偶性：</p>
+<script type="math/tex; mode=display">d^*= p^*</script><p>假设$x^*$，$\lambda^*$，$\mu^*$分别是原始问题和对偶问题的最优解，则：</p>
+<script type="math/tex; mode=display">\begin{aligned} f_o(x^*)&=g_o(\lambda^*,\mu^*) \\& =\underset{x}{min}[f_o(x)+\sum_{i=1}^M\lambda_if_i(x)+\sum_{i=1}^P\mu_ih_i(x)] \\ &\le f_o(x^*)+\sum_{i=1}^M\lambda^*_if_i(x^*)+\sum_{i=1}^P\mu_i^*h_i(x^*) \\ &\le f_o(x^*)   \end{aligned}</script><p>因此以上不等号可全部换成等号，则可得到：</p>
+<script type="math/tex; mode=display">\begin{aligned} \left\{ \begin{array}{lr} \nabla f_o(x^*)+\sum_{i=1}^M \lambda^*_i\nabla f_i(x^*) + \sum_{i=1}^P\mu_i^*\nabla h_i(x^*) = 0 & \\ \lambda^*_if_i(x^*) =0, \quad i=1,2,..,M & \\ h_i(x^*) =0, \quad i=1,2,..,P & \\ fi(x^*) \le 0, \quad i=1,2,...,M &\\ \lambda^*_i \ge 0, \quad i=1,2,...,M    \end{array} \right.  \end{aligned}</script><p>以上即为KKT条件。</p>
+<p>转换为对偶问题的原因是：</p>
+<ol>
+<li>改变计算复杂度。原始问题是与w的维度有关，即特征纬度，对偶问题只与拉格朗日算子$\alpha$有关，而大部分数据的$\alpha$为0</li>
+<li>得到含有内积形式的目标函数，方便引入核函数</li>
+</ol>
+<h2 id="为什么要除以-w-，为什么gamma-可以取1？"><a href="#为什么要除以-w-，为什么gamma-可以取1？" class="headerlink" title="为什么要除以||w||，为什么gamma^可以取1？"></a>为什么要除以||w||，为什么gamma^可以取1？</h2><p>因为除以$||w||$后使函数间隔转化为几何间隔，使之更接近于几何距离的概念。</p>
+<p>另外，函数间隔：</p>
+<script type="math/tex; mode=display">\hat \gamma = \underset{i} {min} \ y_i(wx_i+b)=\underset{i} {min} \ \hat \gamma_i</script><p>成比例的改变w，b会使函数间隔也改变，因此可以施加一个约束$||w||$，使得w，b的改变不会使间隔改变。</p>
+<p>几何间隔：</p>
+<script type="math/tex; mode=display">\gamma=\underset{i} {min} \ y_i(\frac{w}{||w||}x_i+\frac{b}{||w||})=\underset{i} {min} \ \frac{\hat \gamma_i}{||w||} = \frac{\hat \gamma}{||w||}</script><p>则：</p>
+<script type="math/tex; mode=display">\underset{w,b}{max}\gamma \iff \underset{w,b}{max}\frac{\hat\gamma}{||w||} \quad \mathrm{s.t.}\quad y_i(wx_i+b)\ge\hat\gamma</script><p>w，b成比例改变为aw，ab时函数间隔也变为$a\cdot \hat \gamma$，但对于优化问题没有影响，因此可以取$\hat \gamma=1$，方便计算。</p>
+<h2 id="核函数的概念，为什么用核函数，有哪些核，如何选择？"><a href="#核函数的概念，为什么用核函数，有哪些核，如何选择？" class="headerlink" title="核函数的概念，为什么用核函数，有哪些核，如何选择？"></a>核函数的概念，为什么用核函数，有哪些核，如何选择？</h2><p>当输入空间为欧氏空间或离散空间，特征空间为希尔伯特空间时，核函数表示将输入从输入空间映射到特征空间得到的特征向量之间的内积。</p>
+<p>核函数能简化映射空间中的内积计算，避免了直接进行高维空间计算。</p>
+<ul>
+<li>多项式核：</li>
+</ul>
+<script type="math/tex; mode=display">K(x,z)=(x\cdot z + 1)^P</script><ul>
+<li>高斯核（是径向基核的一种）：</li>
+</ul>
+<script type="math/tex; mode=display">K(x,z)=exp(-\frac{||x-z||^2}{2\sigma^2})</script><ul>
+<li>线性核：</li>
+</ul>
+<script type="math/tex; mode=display">K(x,z)=(x^T\cdot z)</script><ul>
+<li>sigmoid核</li>
+<li>傅里叶核</li>
+<li>字符串核</li>
+</ul>
+<h2 id="为什么引入拉格朗日方法？"><a href="#为什么引入拉格朗日方法？" class="headerlink" title="为什么引入拉格朗日方法？"></a>为什么引入拉格朗日方法？</h2><ol>
+<li>使用拉格朗日乘子法可以更高效的求解优化问题</li>
+<li>将寻找最大化几何间隔划分超平面问题转化为一个凸优化问题</li>
+<li>可以将原始问题转化为对偶问题</li>
+</ol>
+<h2 id="SVM如何处理多分类问题？"><a href="#SVM如何处理多分类问题？" class="headerlink" title="SVM如何处理多分类问题？"></a>SVM如何处理多分类问题？</h2><ul>
+<li><p>一对多法：训练时一次把某类样本归为正类，其他归于负类，K个类别可以构建K个SVM，然后取预测结果最大的一个。缺点是偏差大。</p>
+</li>
+<li><p>一对一法：在任意两类样本间训练一个SVM，K个类别训练$\frac{K(K-1)}{2}$个SVM，取得票最多个的类别。这是libsvm库的做法。缺点是代价较大。</p>
+</li>
+<li><p>层次分类法：将所有类别分成两个子类，再循环划分成两个子类，直到得到单独的一类，然后也从上到下的训练$2^n$个SVM，n为层数。缺点是代价较大。</p>
+</li>
+</ul>
+<h2 id="SVM与LR异同"><a href="#SVM与LR异同" class="headerlink" title="SVM与LR异同"></a>SVM与LR异同</h2><ul>
+<li><p>相同：</p>
+<ol>
+<li>都是分类算法  </li>
+<li>不考虑核函数时，决策面都是线性的</li>
+<li>都是判别模型（模型生成一个概率分布$P(y|x)$）</li>
+</ol>
+</li>
+<li><p>不同：</p>
+<ol>
+<li>损失函数不同：LR是交叉熵函数，SVM是带正则项的合页函数</li>
+<li>SVM只考虑少数支持向量的点，LR考虑所有点，因此SVM不受数据分布影响，LR则受数据分布影响</li>
+<li>SVM最小化结构风险，自带正则项，因此不易过拟合。而LR需要在损失函数上加入正则，不加时容易过拟合</li>
+</ol>
+</li>
+</ul>
+<h2 id="SVM与感知机的联系与区别"><a href="#SVM与感知机的联系与区别" class="headerlink" title="SVM与感知机的联系与区别"></a>SVM与感知机的联系与区别</h2><ul>
+<li><p>联系：SVM近似于带L2正则的感知机<br>  感知机的优化问题：</p>
+<script type="math/tex; mode=display">\underset{w,b}{min} \frac{1}{n}\sum_{i=1}^nmax(0, -y_i(wx_i+b))</script><p>  SVM有优化问题：</p>
+<script type="math/tex; mode=display">\underset{w,b}{min} \frac{1}{n}\sum_{i=1}^nmax(0, 1-y_i(wx_i+b))+\lambda ||w||^2</script></li>
+<li><p>区别：SVM在大致分类正确时最大化间隔，一定程度上避免了过拟合。感知机最大程度最求正确划分，最小化错误，容易过拟合<br>  <img src="/机器学习常见问答题/SVM与感知机.png" alt=""></p>
+</li>
+</ul>
+<h2 id="SVM优缺点"><a href="#SVM优缺点" class="headerlink" title="SVM优缺点"></a>SVM优缺点</h2><ul>
+<li>优点：<ol>
+<li>可用于线性问题和非线性问题，也可用于回归</li>
+<li>低泛化误差</li>
+<li>易解释</li>
+<li>计算复杂度低</li>
+<li>对离群点不敏感</li>
+</ol>
+</li>
+<li>缺点：<ol>
+<li>对参数和核函数选择敏感</li>
+<li>原始SVM只适用于二分类问题</li>
+</ol>
+</li>
+</ul>
+<h1 id="集成学习"><a href="#集成学习" class="headerlink" title="集成学习"></a>集成学习</h1><h2 id="讲讲决策树算法"><a href="#讲讲决策树算法" class="headerlink" title="讲讲决策树算法"></a>讲讲决策树算法</h2><p>决策树算法是一种基于树的分类模型，由结点和有向边组成。结点有内部结点和叶结点：内部结点表示特征，叶结点表示一个分类。决策树可看成一个if-then规则的集合，该集合具有一个性质：互斥且完备，即每个实例都被且仅被一个规则覆盖。</p>
+<h2 id="什么是熵？信息熵的公式"><a href="#什么是熵？信息熵的公式" class="headerlink" title="什么是熵？信息熵的公式"></a>什么是熵？信息熵的公式</h2><p>熵是表示随机变量不确定性的度量。</p>
+<script type="math/tex; mode=display">H(\mathrm{X})=\mathbb{E}_{\mathrm{X} \sim P}[I(x)]=-\sum_{x \in \mathrm{X}}P(x)\log P(x)</script><h2 id="信息增益公式及意义"><a href="#信息增益公式及意义" class="headerlink" title="信息增益公式及意义"></a>信息增益公式及意义</h2><script type="math/tex; mode=display">\begin{aligned} IG(T) &= H(C) -H(C|T) \\
+&= -\sum_{i=1}^nP(C_i)\log_2P(C_i) + P(t)\sum_{i=1}^nP(C_i|t)\log_2P(C_i|t)+P(\overline{t})\sum_{i=1}^nP(C_i|\overline{t})\log_2P(C_i|\overline{t}) \end{aligned}</script><p>表示决策树在划分前后的信息差值</p>
+<h2 id="决策树如何处理连续值"><a href="#决策树如何处理连续值" class="headerlink" title="决策树如何处理连续值"></a>决策树如何处理连续值</h2><ol>
+<li>将所有连续取值排序</li>
+<li>依次按每个特征划分</li>
+<li>计算划分前后信息增益或信息增益率</li>
+<li>选择最大的特征作为最优划分点划分数据</li>
+<li>循环以上过程直至停止</li>
+</ol>
+<h2 id="如何判断决策树和随机森林过拟合"><a href="#如何判断决策树和随机森林过拟合" class="headerlink" title="如何判断决策树和随机森林过拟合"></a>如何判断决策树和随机森林过拟合</h2><p>当训练集误差继续降低或不动，但验证集误差开始显著增加时，认为模型已经过拟合</p>
+<ul>
+<li><p>产生原因：  </p>
+<ol>
+<li><p>样本问题：  </p>
+<ol>
+<li>噪声扰动大</li>
+<li>抽取方法不当</li>
+<li>使用太多无关变量</li>
+</ol>
+</li>
+<li><p>构建树的方法问题：没有限制树的生长及剪枝</p>
+</li>
+</ol>
+</li>
+<li><p>解决办法：</p>
+<ol>
+<li>合理抽样，数据清洗</li>
+<li>剪枝</li>
+</ol>
+</li>
+</ul>
+<h2 id="决策树三种模型区别和使用场景"><a href="#决策树三种模型区别和使用场景" class="headerlink" title="决策树三种模型区别和使用场景"></a>决策树三种模型区别和使用场景</h2><ul>
+<li>区别：<ol>
+<li>选择最优分割属性和值的指标不同：ID3用信息增益，C4.5用信息增益率，CART用最小平方误差和基尼指数</li>
+<li>ID3不适用于连续值，但C4.5和CART可以</li>
+<li>ID3适用于小数据集，不剪枝，C4.5适用于小数据集，剪枝，CART适用大数据集，剪枝</li>
+<li>ID3，C4.5只用于分类，CART还可以用于回归</li>
+<li>ID3，C4.5的子结点可以是多个，CART只是二叉子结点</li>
+<li>ID3不能处理缺失值，C4.5和CART能</li>
+<li>ID3，C4.5特征属性层级之间不重复使用，CART可以</li>
+</ol>
+</li>
+</ul>
+<h2 id="随机森林算法及优缺点"><a href="#随机森林算法及优缺点" class="headerlink" title="随机森林算法及优缺点"></a>随机森林算法及优缺点</h2><p>随机森林是一种Bagging集成学习方法，它首先通过自助采样法得到m组数据，然后用每组数据训练一棵决策树，在训练时，RF中决策树的划分与传统不同，它是在几个属性中随机抽样p个属性，在这p个属性上寻找最优分割点，最后训练好的树通过投票法得到最终的分类。</p>
+<ul>
+<li><p>优点：</p>
+<ol>
+<li>高维数据不用做特征选择</li>
+<li>能给出特征重要比</li>
+<li>包外估计，使用无偏估计，泛化能力强</li>
+<li>树之间独立，可以并行</li>
+<li>丢失部分特征仍然有不错的精度</li>
+<li>不用剪枝，关注降低方差</li>
+<li>表现良好，易训练，常用来作为基准</li>
+</ol>
+</li>
+<li><p>缺点：</p>
+<ol>
+<li>某些大噪声数据的分类或回归容易过拟合</li>
+<li>对于不同属性取值的数据，取值划分较多的属性对RF产生更大影响，导致权值不可信</li>
+</ol>
+</li>
+</ul>
+<h2 id="随机森林损失函数"><a href="#随机森林损失函数" class="headerlink" title="随机森林损失函数"></a>随机森林损失函数</h2><p>用包外误差表示：</p>
+<script type="math/tex; mode=display">e^{oob}=\frac{1}{|D|}\sum_{(x,y)\in D}I(H^{oob}(x) \ne y)</script><p>其中</p>
+<script type="math/tex; mode=display">H^{oob}(x)=arg\underset{y}{max}\sum_{t=1}^TI(h_t(x) = y)\cdot I(x \notin D_t)</script><p>$D_t$表示实际使用的数据</p>
+<p>但RF并不是对损失函数进行优化达到学习的目的的，RF通过学习大量决策树使得集成之后又很好的表示。</p>
+<p>而当中用到的决策树的损失为：</p>
+<script type="math/tex; mode=display">C_\alpha(T)=\sum_{t=1}^{|T|}N_tH_t(T)+\alpha |T|</script><p>其中$H_t$为经验熵：</p>
+<script type="math/tex; mode=display">H_t(T)=-\sum_K\frac{N_{kt}}{N_t}\log \frac{N_{kt}}{N_t}</script><h2 id="随机森林怎么得到最终结果"><a href="#随机森林怎么得到最终结果" class="headerlink" title="随机森林怎么得到最终结果"></a>随机森林怎么得到最终结果</h2><ul>
+<li>分类：多数投票法</li>
+<li>回归：回归树预测结果的平均值</li>
+</ul>
+<h2 id="随机森林防止过拟合的方法"><a href="#随机森林防止过拟合的方法" class="headerlink" title="随机森林防止过拟合的方法"></a>随机森林防止过拟合的方法</h2><ol>
+<li>限制每个树的深度</li>
+<li>对模型进行交叉验证</li>
+<li>特征选择合适的数量</li>
+</ol>
+<h2 id="谈谈Boosting"><a href="#谈谈Boosting" class="headerlink" title="谈谈Boosting"></a>谈谈Boosting</h2><p>Boosting是一种集成学习方法，它的思想是从某个基学习器出发，反复学习，得到一系列的基学习器，然后组合成一个强学习器。</p>
+<p>Boosting是基于串行策略的，新学习器依赖于旧学习器，从偏差-方差的角度看，Boosting关注于降低模型偏差。</p>
+<p>Boosting策略要解决两个基本问题：每一轮如何改变数据的权值或概率分布；学习到的基学习器如何组合？</p>
+<p>Boosting常见的算法有AdaBoost, GBDT, XGBoost。</p>
+<h2 id="GBDT分裂的条件，如何并行化？"><a href="#GBDT分裂的条件，如何并行化？" class="headerlink" title="GBDT分裂的条件，如何并行化？"></a>GBDT分裂的条件，如何并行化？</h2><p>GBDT中采用CART回归树作为基学习器，故分裂条件是CART的分类条件，即平方误差最小化。</p>
+<p>GBDT的并行化可以通过两个方面：  </p>
+<ol>
+<li>树内部寻找最佳分割点时的计算是相互独立的，故可用多线程/MPI并行计算</li>
+<li>树的建立方式上可以通过非递归建树：<br><center><img src="/机器学习常见问答题/GBDT并行化.png" alt=""></center></li>
+</ol>
+<h2 id="GBDT的Boosting体现在哪？"><a href="#GBDT的Boosting体现在哪？" class="headerlink" title="GBDT的Boosting体现在哪？"></a>GBDT的Boosting体现在哪？</h2><p>Boosting是提升方法，是新学习器不断从旧学习器上学习的过程。</p>
+<p>加法模型通过最小化损失函数来决定下一个树的参数：</p>
+<script type="math/tex; mode=display">\hat{\theta}_m = arg\underset{\theta_m}{min}\sum_{i=1}^NL(y_i,f_{m-1}(x_i)+T(x_i;\theta_{m-1}))</script><p>提升树是一种加法模型，提升树中损失函数是残差，而GBDT中是用负梯度来近似残差作为损失函数的。</p>
+<p>故GBDT的Boosting体现在通过不断拟合近似残差来进行学习。</p>
+<h2 id="XGBoost原理及目标函数"><a href="#XGBoost原理及目标函数" class="headerlink" title="XGBoost原理及目标函数"></a>XGBoost原理及目标函数</h2><p>XGBoost是改进的GBDT算法，是对梯度提升树的高效实现。XGBoost从原理上与GBDT最大的区别就是目标函数，XGBoost在损失函数中加入了正则项：</p>
+<script type="math/tex; mode=display">L(\theta) = \sum_{i=1}^Nl(y_i,\hat{y}_i) + \sum_{i=1}^t\Omega(f_i)</script><p>其中</p>
+<script type="math/tex; mode=display">\Omega(f)=\gamma T+\frac{1}{2}\lambda \sum_{j=1}^Tw_j^2</script><p>正则项包含对叶子数的限制和L2权重衰减。</p>
+<p>另外，GBDT中采用一阶导数近似残差来学习新的决策树，XGBoost中采用二阶泰勒近似，故第t次的损失为：</p>
+<script type="math/tex; mode=display">\begin{aligned} L^{(t)} & = \sum_{i=1}^Nl(y_i,\hat{y}_i^{(t-1)}+f_t(x_i)) + \Omega(f_t) \\
+& = \sum_{i=1}^N\left [ l(y_i, \hat{y}_i^{(t-1)}) + g_if_t(x_i) + \frac{1}{2}h_if_t^2(x_i) \right ] +\Omega(f_t) \\
+& \approxeq \sum_{i=1}^N\left [ g_iW_{q(x_i)} + \frac{1}{2}h_iW^2_{q(x_i)} \right ] + \gamma T+\frac{1}{2}\lambda \sum_{j=1}^Tw_j^2 \\ 
+& = \sum_{j=1}^T\left [ (\sum_{i\in I_j}g_i)W_j + \frac{1}{2}(\sum_{i\in I_j}h_i+\lambda) W^2_j \right ] + \gamma T \end{aligned}</script><p>令$G_j=\sum_{i\in I_j}g_i$，$H_j=\sum_{i\in I_j}h_i$，则</p>
+<script type="math/tex; mode=display">L^{(t)} = \sum_{j=1}^T\left [ G_jW_j + \frac{1}{2}(H_j+\lambda) W^2_j \right ] + \gamma T</script><p>对$W_j$求导等于0得：</p>
+<script type="math/tex; mode=display">W_j^* = -\frac{G_j}{H_j+\lambda}</script><p>代入得：</p>
+<script type="math/tex; mode=display">L^*= -\frac{1}{2}\sum_{j=1}^T\frac{G_j}{H_j+\lambda} + \gamma T</script><p>$L^*$称为结构分数，代表该树结构有多好。</p>
+<p>XGBoost中结点的分裂是通过最大化得分公式来寻找最佳分裂点，其中得分公式定义为：</p>
+<script type="math/tex; mode=display">Gain=\frac{1}{2}\left [ \frac{G_L^2}{H_L+\lambda} + \frac{G_R^2}{H_R+\lambda} - \frac{G_L^2+G_R^2}{H_L+H_R+\lambda} \right ] - \gamma</script><p>这个公式使得结点分裂时不会过拟合，因为$\gamma$是叶子数的限制，当$\gamma$以较大或者叶子数太多时，Gain&lt;0，此时就停止分裂。</p>
+<h2 id="XGBoost常用参数"><a href="#XGBoost常用参数" class="headerlink" title="XGBoost常用参数"></a>XGBoost常用参数</h2><ol>
+<li>objective：学习目标，指定学习任务类型</li>
+<li>eval_metric：评估指标，取决于objective的取值</li>
+<li>lambda：L2正则的惩罚系数</li>
+<li>lambda_bias：偏置上的L2正则</li>
+<li>alpha：L1正则的惩罚系数</li>
+<li>eta：更新过程中的收缩步长</li>
+<li>max_depth：树的最大深度</li>
+<li>min_child_weight：孩子结点最小权重</li>
+<li>gamma：得分收益最小所需值，也是叶子数正则的系数</li>
+<li>max_leaf_nodes：最大叶结点数量</li>
+</ol>
+<h2 id="XGBoost对缺失值敏感吗？做了什么操作？"><a href="#XGBoost对缺失值敏感吗？做了什么操作？" class="headerlink" title="XGBoost对缺失值敏感吗？做了什么操作？"></a>XGBoost对缺失值敏感吗？做了什么操作？</h2><p>不敏感，XGBoost中可以为缺失值指定分支的默认方向。</p>
+<h2 id="GBDT与XGBoost的区别"><a href="#GBDT与XGBoost的区别" class="headerlink" title="GBDT与XGBoost的区别"></a>GBDT与XGBoost的区别</h2><ol>
+<li>目标函数不同</li>
+<li>GBDT用梯度下降寻找最优解，XGBoost用牛顿法</li>
+<li>GBDT中最优切分点的标准是最小平方损失，XGBoost中是自定义的得分公式</li>
+<li>寻找最优切分点时GBDT是遍历特征的每个可能取值，XGBoost用一种近似算法枚举一些可能的点</li>
+<li>XGBoost将特征排序后存储在内存中，处理特征时可以并行</li>
+</ol>
+
+</div>
+
+
+      </div>
+      
+  	</div>
+
+    <!-- After footer scripts -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
+<footer id="footer" class="footer">
+  <div class="footer-inner"> 
+
+  <div class="copyright">
+    ©  2018 -- 2023    Young&Echo
+  </div>
+
+  <div class="powered-by">
+    Powered By <a class="theme-link" href="http://hexo.io">Hexo</a>
+  </div>
+
+  <div class="powered-by">
+    主题 - <a class="theme-link" href="https://github.com/sharvaridesai/hexo-theme-edinburgh">Edinburgh</a>  
+  </div>
+
+  <div class="reviewer">
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    您是本站第<span id="busuanzi_value_site_uv" class="counter"><i class="fa fa-spinner fa-spin"></i></span>位访问者
+  </div>
+
+  <!-- 不蒜子 -->
+  <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <!-- 不蒜子计数初始值纠正 -->
+  <script>
+      $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(100000);
+       function fixCount() {
+         if ($("#busuanzi_container_site_uv").css("display") != "none") {
+              clearInterval(int);
+              $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+         }
+     }
+    });
+  </script>
+
+  <script src="/js/google-code-prettify/prettify.js"></script>
+  <script type='text/javascript'>
+		//代码高亮
+		$(document).ready(function(){
+	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+   			prettyPrint();
+		});
+  </script>
+
+
+ </div>
+    </footer><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  </body>
+</html>

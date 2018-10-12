@@ -116,8 +116,8 @@
 <p>优点：计算简单、效果良好、容易做并行计算</p>
 <p>缺点：容易过拟合、对离群点敏感、对非线性数据拟合不好，需要人工做交叉特征</p>
 <h2 id="LR损失函数推导"><a href="#LR损失函数推导" class="headerlink" title="LR损失函数推导"></a>LR损失函数推导</h2><script type="math/tex; mode=display">P(Y=1|X)=\sigma(x)\quad P(Y=0|X)=1-\sigma(x)</script><p>似然函数：</p>
-<script type="math/tex; mode=display">\underset{i=1}\prod^{N}[\sigma(x_i)]^{y_i}[1-\sigma(x_i)]^{1-y_i}</script><p>负对数似然函数：</p>
-<script type="math/tex; mode=display">\begin{aligned} L(w) & =-\underset{i=1}\sum^N[y_ilog\sigma(x_i) + (1-y_i)log(1-\sigma(x_i)] \\ & = -\underset{i=1}\sum^N[y_ilog\frac{\sigma(x_i)}{1-\sigma(x_i)} + log(1-\sigma(x_i)] \\ & = -\underset{i=1}\sum^N[y_i(wx_i) - log(1+e^{wx_i})]\end{aligned}</script><h2 id="LR的优化方法及区别，梯度下降有哪几种？"><a href="#LR的优化方法及区别，梯度下降有哪几种？" class="headerlink" title="LR的优化方法及区别，梯度下降有哪几种？"></a>LR的优化方法及区别，梯度下降有哪几种？</h2><p>梯度下降法：每一步求解目标函数的梯度向量，将参数沿着负梯度的方向更新。</p>
+<script type="math/tex; mode=display">\prod_{i=1}^{N}[\sigma(x_i)]^{y_i}[1-\sigma(x_i)]^{1-y_i}</script><p>负对数似然函数：</p>
+<script type="math/tex; mode=display">\begin{aligned} L(w) & =-\sum_{i=1}^N[y_ilog\sigma(x_i) + (1-y_i)log(1-\sigma(x_i)] \\ & = -\sum_{i=1}^N[y_ilog\frac{\sigma(x_i)}{1-\sigma(x_i)} + log(1-\sigma(x_i)] \\ & = -\sum_{i=1}^N[y_i(wx_i) - log(1+e^{wx_i})]\end{aligned}</script><h2 id="LR的优化方法及区别，梯度下降有哪几种？"><a href="#LR的优化方法及区别，梯度下降有哪几种？" class="headerlink" title="LR的优化方法及区别，梯度下降有哪几种？"></a>LR的优化方法及区别，梯度下降有哪几种？</h2><p>梯度下降法：每一步求解目标函数的梯度向量，将参数沿着负梯度的方向更新。</p>
 <p>牛顿法：将目标函数在x处作二阶泰勒展开</p>
 <script type="math/tex; mode=display">\begin{aligned} & \because f(x)=f(x_k)+g_k^T(x-x_k)+\frac{1}{2}(x-x_k)^TH_k(x-x_k) \\ & \therefore\nabla f(x)=f^{'}(x)=g_k+H_k(x-x_k) \\& let \quad x=x_{k+1} \\ & \because \nabla f(x_{k+1})=0 \\ & \therefore g_k+H_k(x_{k+1}-x_k)=0 \\ & \ \ \implies x_{k+1} = x_k-H_k^{-1}g_k\end{aligned}</script><p>以上为牛顿法的参数更新方法</p>
 <p>区别：梯度下降法是用一阶泰勒展开，牛顿法是用二阶泰勒展开，牛顿法收敛更快但是计算更复杂，需要计算海塞矩阵的逆矩阵，可用拟牛顿法代替。拟牛顿法包括DPF，BFGS，LBFGS等。</p>
